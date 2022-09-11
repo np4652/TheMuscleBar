@@ -1,0 +1,125 @@
+﻿@model TheMuscleBar.Models.ApplicationUser
+<link href="/css/profile.css" rel="stylesheet" type="text/css">
+
+<div class="row mt-4">
+    <div class="col-sm-3">
+        <div class="card clrText">
+            <div class="valign-wrapper pr12ImgNameDiv">
+                <img class="circle pr12ImageCircle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8II-Z-AtZ00u5hZVVhPK7J1tp5I2gVVT9UMOHhCQ&s" width="0" height="0" alt="">
+                <div class="pr12AuthName fw500 fs18">@Model.Name</div>
+            </div>
+            <div>
+                <div>
+                    <a class="" href="javascript:void(0)">
+                        <div class="pr12ProfMenu fs15 cur-po valign-wrapper pr12ProfMenuSelected onMount-appear-done onMount-enter-done">
+                            <div class="valign-wrapper width100 fsAuto">Status</div>
+                            <div class="pr12IcBox valign-wrapper">
+                                <input type="checkbox" class="toggle" @Html.Raw(Model.IsActive?"checked":"")>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="" href="javascript:void(0)">
+                        <div class="pr12ProfMenu fs15 cur-po valign-wrapper onMount-appear-done onMount-enter-done">
+                            <div class="valign-wrapper width100">TwoFactorEnabled</div>
+                            <div class="pr12IcBox valign-wrapper">
+                                <input type="checkbox" class="toggle" @Html.Raw(Model.TwoFactorEnabled?"checked":"")>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="bd66Box clearfix">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bd66LeftInp">
+                            <div>
+                                <div class="c-fiiZaJ fs14 fw400">NAME</div>
+                                <div class="c-jCqGRU">
+                                    <div class="c-UazGY">
+                                        <input class="c-kDbNPa fw400 fs16" id="authorName" value="@Model.Name">
+                                    </div>
+                                </div>
+                                <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 bd66RightInp">
+                        <div class="bd66RightInp">
+                            <div>
+                                <div class="c-fiiZaJ fs14 fw400">MOBILE NUMBER</div>
+                                <div class="c-jCqGRU">
+                                    <div class="c-UazGY">
+                                        <input class="c-kDbNPa  fw400 fs16" id="authorMobile" value="@Model.PhoneNumber">
+                                    </div>
+                                </div>
+                                <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bd66InpContainer">
+                    <div class="col-md-6 bd66LeftInp">
+                        <div class="bd66LeftInp">
+                            <div>
+                                <div class="c-fiiZaJ fs14 fw400">EMAIL</div>
+                                <div class="c-jCqGRU">
+                                    <div class="c-UazGY">
+                                        <input class="c-kDbNPa  fw400 fs16" id="authorEmail" placeholder="Enter E-Mail" type="text" value="@Model.Email">
+                                        <span class="c-lkBNdM"> </span>
+                                    </div>
+                                </div>
+                                <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 bd66RightInp">
+                        <div class="bd66RightInp">
+                            <div>
+                                <div class="c-fiiZaJ fs14 fw400">Merchant Id</div>
+                                <div class="c-jCqGRU">
+                                    <div class="c-UazGY">
+                                        <input class="c-kDbNPa  fw400 fs16" id="authorMerchantId" value="@Model.UserId">
+                                        <div class="ctc11Container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="13" width="13" class="ctc11CopyLogo">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                                            </svg>
+                                            <span class="ctc11ToolTip">Copy To Clipboard</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bd66InpContainer">
+                    <div class="col-md-6 bd66LeftInp">
+                        <div class="bd66LeftInp">
+                            <div>
+                                <div class="c-fiiZaJ fs14 fw400">Merchant Key</div>
+                                <div class="c-jCqGRU">
+                                    <div class="c-UazGY">
+                                        <input class="c-kDbNPa  fw400 fs16" id="authorEmail" value="@Model.ConcurrencyStamp">
+                                        <div class="ctc11Container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="13" width="13" class="ctc11CopyLogo">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                                            </svg>
+                                            <span class="ctc11ToolTip">Copy To Clipboard</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

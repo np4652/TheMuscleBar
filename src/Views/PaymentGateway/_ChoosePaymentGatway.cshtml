@@ -1,0 +1,25 @@
+﻿@model TheMuscleBar.AppCode.Reops.Entities.PGDisplayModel
+@{
+    var m = Model.PGs;
+}
+<div class="card">
+    <div class="card-body">
+        @if (Model.PGs.Any())
+        {
+            foreach (var item in Model.PGs)
+            {
+                <div class="form-group">
+                    <div class="mode-box btn btn-outline-secondary btn-block paymentGateway">
+                        <span class="" data-pg-Id="@((int)item)" data-package-Id="@Model.PackageId" >@item.ToString()</span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<script>
+    $('div.paymentGateway').unbind().click(e=>{
+        let ele = $(e.currentTarget).children('span').data();
+        window.open(`/InitiatePayment?packageId=${ele.packageId}&paymentGatewayType=${ele.pgId}`, "_blank", "toolbar=0,width=900,height=650,left=0,top=0");
+    })
+</script>

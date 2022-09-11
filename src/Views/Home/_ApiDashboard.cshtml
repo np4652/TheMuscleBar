@@ -1,0 +1,383 @@
+﻿
+<link href="~/css/dbstyle.css" rel="stylesheet">
+<style>
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+        max-width: 100%;
+        zoom: 76%
+    }
+</style>
+
+<div class="page-header">
+    <h1 class="page-title">Dashboard </h1>
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3 col-sm-mb-2">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0 text-center">
+                <div class="main-va users-count">
+                    <div class="online-users">
+                        <div class="col-nw">
+                            <h3 class="fw-semibold" id="Hits">0</h3>
+                            <p class="fs-13 mb-0 text-muted">Count</p>
+                        </div>
+                    </div>
+                    <div class="offline-users">
+                        <div class="top-icn dash">
+                            <h3 class="fw-semibold" id="HitsAmnt">0</h3>
+                            <p class="fs-13 mb-0 text-muted"> Amount</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer bg-dark">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-white mt-0 mb-0 fs-fot">
+                            <!-- <span class="icn-box text-success fw-semibold fs-13 me-1">
+                                <i class="fa fa-long-arrow-up"></i>
+                                42%</span>-->
+                            Hits
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="counter-icon dash ms-auto box-shadow-primary">
+                <i class="fa fa-bar-chart"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3 col-sm-mb-2">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0 text-center">
+                <div class="main-va users-count">
+                    <div class="online-users">
+                        <div class="col-nw">
+                            <h3 class="fw-semibold" id="Success">0</h3>
+                            <p class="fs-13 mb-0 text-muted">Count </p>
+                        </div>
+                    </div>
+
+                    <div class="offline-users">
+                        <div class="top-icn dash">
+                            <h3 class="fw-semibold" id="SuccessAmnt">0</h3>
+                            <p class="fs-13 mb-0 text-muted"> Amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-success">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-white mb-0 mt-0 fs-fot">
+                            <!--<span class="icn-box text-danger fw-semibold fs-13 me-1">
+                                <i class="fa fa-long-arrow-down"></i>
+                                12%</span>-->
+                            Success
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="counter-icon dash ms-auto box-shadow-secondary">
+                <i class="fa fa-cart-plus"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3 col-sm-mb-2">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0 text-center">
+                <div class="main-va users-count">
+                    <div class="online-users">
+                        <div class="col-nw">
+                            <h3 class="fw-semibold" id="Failed">0</h3>
+                            <p class="fs-13 mb-0 text-muted">Count</p>
+                        </div>
+                    </div>
+                    <div class="offline-users">
+                        <div class="top-icn dash">
+                            <h3 class="fw-semibold" id="FailedAmnt">0</h3>
+                            <p class="fs-13 mb-0 text-muted"> Amount</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer bg-danger">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-white mb-0 mt-0 fs-fot">
+                            <!--<span class="icn-box text-danger fw-semibold fs-13 me-1">
+                                <i class="fa fa-long-arrow-down"></i>
+                                12%</span>-->
+                            Failed
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="counter-icon dash ms-auto box-shadow-secondary">
+                <i class="fa fa-cart-plus"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3 col-sm-mb-2">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0 text-center">
+                <div class="main-va users-count">
+                    <div class="online-users">
+                        <div class="col-nw">
+                            <h3 class="fw-semibold" id="Pending">0</h3>
+                            <p class="fs-13 mb-0 text-muted">Count</p>
+                        </div>
+                    </div>
+
+                    <div class="offline-users">
+                        <div class="top-icn dash">
+                            <h3 class="fw-semibold" id="PendingAmnt">0</h3>
+                            <p class="fs-13 mb-0 text-muted">Amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-warningg">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-white mb-0 mt-0 fs-fot">
+                            Pending
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="counter-icon dash ms-auto box-shadow-secondary">
+                <i class="fa fa-cart-plus"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card overflow-hidden mt-4">
+            <div class="card-header">
+                <h3 class="card-title">Sales History</h3>
+                <div class="ms-auto">
+                    @*<div class="dropdown">
+                    <button onclick="redraw()" class="btn btn-primary btn-sm waves-effect waves-light">Randomize data</button>
+                    </div>*@
+                </div>
+            </div>
+            <div class="card-body ">
+                <div id="chartdiv"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card overflow-hidden mt-4">
+            <div class="card-header">
+                <h3 class="card-title">Sales History</h3>
+            </div>
+            <div class="card-body">
+                <canvas class="chart" id="myChart" width="300" height="300"></canvas>
+            </div>
+            <div class="card__footer">
+                <div class="card__footer-section">
+                    <div class="footer-section__data" id="Total">0</div>
+                    <div class="footer-section__label">Total</div>
+                </div>
+                <div class="card__footer-section">
+                    <div class="footer-section__data" id="Remaining">0</div>
+                    <div class="footer-section__label">Remaining</div>
+                </div>
+                <div class="card__footer-section">
+                    <div class="footer-section__data" id="Expiry"></div>
+                    <div class="footer-section__label" style="cursor:pointer"><span class="badge badge-secondary" onclick='location.href = "/Package/Packages"'>Expiry</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-md-5">
+        <div class="card overflow-hidden mt-4">
+            <div class="card-header">
+                <div class="col-6"> <h6 class="float-left">Status Report</h6></div>
+                <div class="col-6 text-right">
+                    <div class="btn-group">
+                        <button type="button" onclick="GetPieChartData(1)" class="btn btn-primary active btn-sm btnSplitRequestType" data-value="1">By Count</button>
+                        <button type="button" onclick="GetPieChartData(2)" class="btn btn-primary btn-sm btnSplitRequestType" data-value="2">By Amount</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <canvas class="" id="myPieChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div id="recentActivity"></div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js'></script>
+
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script>
+        $(function () {
+            $.post('UserDashboardCount').done((result) => {
+                $('#Pending').text(result.pending);
+                $('#Failed').text(result.failed);
+                $('#Success').text(result.success);
+                $('#Hits').text(result.hits);
+            });
+            $.post('TotalUserDashboardAmnt').done((result) => {
+                $('#PendingAmnt').text(result.pendingAmnt);
+                $('#FailedAmnt').text(result.failedAmnt);
+                $('#SuccessAmnt').text(result.successAmnt);
+                $('#HitsAmnt').text(result.hitsAmount);
+            });
+            GetPieChartData(1);
+        })
+    </script>
+    <script id="Script1">
+        $.post('ExpiredActive').done((result) => {
+            $('#Total').text(result.total);
+            $('#Remaining').text(result.remaining);
+            $('#Expiry').text(result.expiry);
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Consumed', 'Remaining'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [result.consumed, result.remaining],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)']
+                    }]
+                }
+            });
+        });
+        var GetPieChartData = (type) => {
+            $.post('PieStatus', { Type: type }).done((result) => {
+               
+                let ctx = document.getElementById('myPieChart');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            'Success',
+                            'Pending',
+                            'Failed'
+                        ],
+                        datasets: [{
+                            label: 'My First Dataset',
+                            data: [result.success, result.pending, result.failed],
+                            backgroundColor: [
+                                'rgb(0, 200, 81)',
+                                'rgb(255, 136, 0)',
+                                'rgb(255, 53, 71)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    }
+                });
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            recentActivity();
+        })
+        var recentActivity = function () {
+            $.post('/Home/RecentActivity').done(function (result) {
+                $('#recentActivity').html(result);
+            }).fail(function (xhr) {
+                console.log(xhr.responseText);
+                alert('something went wrong');
+            })
+        };
+        am5.ready(async function () {
+            // Create root element
+            // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+            var root = am5.Root.new("chartdiv");
+            // Set themes
+            // https://www.amcharts.com/docs/v5/concepts/themes/
+            root.setThemes([
+                am5themes_Animated.new(root)
+            ]);
+            // Create chart
+            // https://www.amcharts.com/docs/v5/charts/xy-chart/
+            var chart = root.container.children.push(am5xy.XYChart.new(root, {
+                panX: true,
+                panY: true,
+                pinchZoomX: true
+            }));
+            // Add cursor
+            // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+            var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+                behavior: "none"
+            }));
+            cursor.lineY.set("visible", false);
+
+
+            var generateDatas = async () => {
+                var data = [];
+                await $.post('UserDashboardChart').done((result) => {
+                    for (let i = 0; i < result.length; ++i) {
+                        data.push({ date: result[i].entryOn, value: result[i].successTransaction });
+                    }
+                });
+                return data;
+            }
+
+
+            // Create axes
+            // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+            var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
+                maxDeviation: 0.2,
+                baseInterval: {
+                    timeUnit: "day",
+                    count: 1
+                },
+                renderer: am5xy.AxisRendererX.new(root, {}),
+                tooltip: am5.Tooltip.new(root, {})
+            }));
+
+            var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+                renderer: am5xy.AxisRendererY.new(root, {})
+            }));
+
+
+            // Add series
+            // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+            var series = chart.series.push(am5xy.LineSeries.new(root, {
+                name: "Series",
+                xAxis: xAxis,
+                yAxis: yAxis,
+                valueYField: "value",
+                valueXField: "date",
+                tooltip: am5.Tooltip.new(root, {
+                    labelText: "{valueY}"
+                })
+            }));
+
+
+            // Set data
+            var data = await generateDatas();
+            series.data.setAll(data);
+
+        });
+    </script>
+    }

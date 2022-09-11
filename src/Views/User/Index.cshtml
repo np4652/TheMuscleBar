@@ -1,0 +1,58 @@
+﻿@using TheMuscleBar.AppCode.Extensions
+@{
+    ViewData["Title"] = "Users";
+    Layout = "_LayOut";
+    string role = User.GetLoggedInUserRoles();
+}
+<div class="card mt-2">
+    <div class="card-body pt-0">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>User Name</th>
+                            <th>Mobile</th>
+                            <th>EmailID</th>
+                            <th>Action</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            loadData().then(s => { });
+        });
+        $('.btnaddUser').click(() => dialog.user(-1));
+         async function loadData() {
+            Q.preloader.load();
+            let role = 'all';
+            let _url = new URL(window.location.href);
+            let path = _url.pathname.split('/');
+            if (path.length >= 3) {
+                role = path[3];
+            }
+            $.ajax({
+                type: 'post',
+                url: '/User/UsersList',
+                success: function (data) {
+                    $('tbody').html(data);
+                },
+                error: function (data) {
+                    console.log('An error occurred.',data);
+                    Q.notify(-1, 'An error occurred.');
+                },
+            });
+            Q.preloader.remove();
+        }
+    </script>
+}

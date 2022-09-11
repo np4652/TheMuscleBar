@@ -1,0 +1,18 @@
+﻿@model List<TheMuscleBar.AppCode.Reops.Entities.ErrorModel>
+@if (Model.Any())
+{
+    int i = 0;
+    foreach (var item in Model)
+    {
+        i++;
+        <tr>
+            <td>@i</td>
+            <td>@item.When</td>
+            <td>@item.Message</td>
+            <td>@item.Level</td>
+            <td>@item.Exception</td>
+            <td>@item.Trace</td>
+            <td>@item.Logger</td>
+        </tr>
+    }
+}

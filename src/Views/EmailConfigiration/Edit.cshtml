@@ -1,0 +1,59 @@
+﻿@model TheMuscleBar.AppCode.Reops.Entities.EmailConfig
+@{
+
+}
+<!-- Row start -->
+<div class="row gutters">
+    <form id="frmproduct" action="/EmailConfigiration/Save" method="post">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <input type="hidden" value="@Model.Id" name="@nameof(Model.Id)" />
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.UserId)</label>
+                                <input type="text" name="@nameof(Model.UserId)" value="@Model.UserId" class="form-control" placeholder="@nameof(Model.UserId)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.EmailFrom)</label>
+                                <input type="text" name="@nameof(Model.EmailFrom)" value="@Model.EmailFrom" class="form-control" placeholder="@nameof(Model.EmailFrom)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.Password)</label>
+                                <input type="text" name="@nameof(Model.Password)" value="@Model.Password" class="form-control" placeholder="@nameof(Model.Password)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.HostName)</label>
+                                <input type="text" name="@nameof(Model.HostName)" value="@Model.HostName" class="form-control" placeholder="@nameof(Model.HostName)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.Port)</label>
+                                <input type="text" name="@nameof(Model.Port)" value="@Model.Port" class="form-control" placeholder="@nameof(Model.Port)" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="inputName">@nameof(Model.EnableSSL)</label>
+                                <input type="checkbox" name="@nameof(Model.EnableSSL)" value="@Model.EnableSSL" class="form-control" placeholder="@nameof(Model.EnableSSL)" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lglg-2 col-md-2 col-sm-2 col-12">
+                            <div class="form-group">
+                                <button class="btn btn-lg btn-primary" id="btnSubmit" type="submit">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

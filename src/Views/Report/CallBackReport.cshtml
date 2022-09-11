@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Report";
+    Layout = "_LayOut";
+}
+<style>
+    td{
+        max-height:8%;
+    }
+</style>
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table id="tble" class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th width="12%">RequestedId</th>
+                            <th width="13%">EntryOn</th>
+                            <th width="25%">Request</th>
+                            <th width="25%">Response</th>
+                            <th>Hook Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            loadData();
+        })
+        var loadData = function () {
+            $.post('/Report/CallBackReportList').done(function (result) {
+                $('#tble tbody').html(result);
+            }).fail(function (xhr) {
+                console.log(xhr.responseText);
+                alert('something went wrong');
+            })
+        };
+
+        $(document).on('click', '.more', e => {
+            let ele = $(e.currentTarget);
+            ele.closest('td').find('.text-short,.text-full').toggleClass('text-short text-full');
+            let txt = ele.text();
+            txt = txt == 'more' ? 'less' : 'more';
+            ele.text(txt);
+        });
+
+
+        function copyToClipboard(element) {
+            let _text = $(element).parents('td').find('p').text();
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(_text).select();
+            document.execCommand("copy");
+            $temp.remove();
+            Q.notify(1, "Copied");
+        }
+
+        function jsonBeautifier(element) {
+            let _text = $(element).parents('td').find('p').text();
+            if (_text) {
+                var jsonObj = JSON.parse(_text);
+                Q.alert({
+                    title: 'Beautifier',
+                    body: `<div style="max-height:90vh;overflow:auto"><pre>${JSON.stringify(jsonObj, null, 4)}</pre></div>`,
+                });
+            }
+        }
+
+        const IsValidJson = str => (/^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@@')
+            .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+            replace(/(?:^|:|,)(?:\s*\[)+/g, '')));
+    </script>
+        }
+

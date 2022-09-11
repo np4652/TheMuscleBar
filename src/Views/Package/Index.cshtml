@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Package";
+    Layout = "_Layout";
+}
+
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="float-right">
+            <button id="btnNew" class="btn btn-sm btn-primary">New</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>PackageName</th>
+                        <th>Validity</th>
+                        <th>HitCount</th>
+                        <th>Cost</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#btnNew').click(() => packageDialog());
+            loadData();
+        });
+
+        var packageDialog = function (PackageId) {
+            $.post('/Package/Edit', { PackageId: PackageId })
+                .done(result => {
+                    Q.alert({
+                        title: 'Package',
+                        body: result
+                    });
+                }).fail(xhr => Q.renderError(xhr)).always(() => Q.preloader.remove());
+        };
+
+        function loadData() {
+            Q.preloader.load();
+            $.ajax({
+                type: 'post',
+                url: '/Package/All',
+                success: function (data) {
+                    $('tbody').html(data);
+                },
+                error: function (data) {
+                    Q.notify(-1, 'An error occurred.');
+                },
+            });
+            Q.preloader.remove();
+        }
+    </script>
+}

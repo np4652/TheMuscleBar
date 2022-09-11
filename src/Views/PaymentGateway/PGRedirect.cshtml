@@ -1,0 +1,29 @@
+﻿@using TheMuscleBar.AppCode.Enums
+@model Response<PaymentGatewayResponse>
+<html>
+<head>
+    <title>Merchant Checkout Page</title>
+
+</head>
+<body>
+    <center><h1>Please do not refresh this page...</h1></center>
+    @if (Model.StatusCode == ResponseStatus.Success)
+    {
+        if (string.IsNullOrEmpty(Model.Result.URL))
+        {
+            <script>
+                document.getElementsByTagName('h1')[0].innerHTML = '<span style="color:#bb5353">Something went wrong.Please try after sometime...</span>';
+            </script>
+        }
+        if (Model.Result.PGType == TheMuscleBar.AppCode.Enums.PaymentGatewayType.CASHFREE && !string.IsNullOrEmpty(Model.Result.URL))
+        {
+            <script>
+                (() => window.location.href = "@Model.Result.URL")();
+            </script>
+        }
+    }
+</body>
+</html>
+
+
+

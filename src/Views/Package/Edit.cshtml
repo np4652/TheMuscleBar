@@ -1,0 +1,67 @@
+﻿@model TheMuscleBar.AppCode.Reops.Entities.Package
+@{
+
+}
+<div class="row">
+    <input type="hidden" value="@Model.PackageId" id="txtPackageId" name="@nameof(Model.PackageId)" />
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="inputName">@nameof(Model.PackageName)</label>
+            <input type="text" name="@nameof(Model.PackageName)" id="txtpackageName" value="@Model.PackageName" class="form-control" />
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="inputName">@nameof(Model.Validity)</label>
+            <input type="text" name="@nameof(Model.Validity)" id="txtPackageValidity" value="@Model.Validity" class="form-control" placeholder="@nameof(Model.Validity)" />
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="inputName">@nameof(Model.HitCount)</label>
+            <input type="text" name="@nameof(Model.HitCount)" id="txtPackageHitCount" value="@Model.HitCount" class="form-control" placeholder="@nameof(Model.HitCount)" />
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="inputName">@nameof(Model.Cost)</label>
+            <input type="text" name="@nameof(Model.Cost)" id="txtCost" value="@Model.Cost" class="form-control" placeholder="@nameof(Model.Cost)" />
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Ind</label>
+            <input type="text" asp-for="Ind" class="form-control" placeholder="Enter Index" />
+        </div>
+    </div>
+  
+
+    <div class="col-sm-12 text-right">
+        <div class="form-group">
+            <button class="btn btn-lg btn-primary" id="btnAdd" type="submit">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#btnAdd').on('click', () => {
+        let param = {
+            PackageId: $('#txtPackageId').val(),
+            PackageName: $('#txtpackageName').val(),
+            Validity: $('#txtPackageValidity').val(),
+            HitCount: $('#txtPackageHitCount').val(),
+            Cost: $('#txtCost').val(),
+            Ind: $('#Ind').val(),
+        };
+        $.post('/Package/Save', param).done(result => {
+            Q.notify(result.statusCode, result.responseText);
+            if (result.statusCode === 1) {
+                $('.ui-dialog-titlebar-close').click();
+                loadData();
+            }
+        }).fail(xhr => Q.renderError(xhr))
+            .always(() => Q.preloader.remove());
+    });
+
+
+</script>

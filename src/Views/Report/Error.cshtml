@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Report";
+    Layout = "_LayOut";
+}
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table id="tble" class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>When</th>
+                            <th>Message</th>
+                            <th>Level</th>
+                            <th>Exception</th>
+                            <th>Trace</th>
+                            <th>Logger</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        $(document).ready(function() {
+            loadData();
+        })
+        var loadData = function() {
+            $.post('/Report/ErrorLog').done(function(result) {
+                $('#tble tbody').html(result);
+            }).fail(function(xhr) {
+                console.log(xhr.responseText);
+                alert('something went wrong');
+            })
+        };
+    </script>
+        }
+

@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "PaymentGateway";
+    Layout = "_LayOut";
+}
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="float-right">  <button id="btnNew" class="btn btn-primary btn-sm">New</button></div>
+        <div class="table-container">
+            <div class="table-responsive">
+                <table id="tbl" class="table table-bordered" >
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th class="text-nowrap">Payment Gateway</th>
+                            <th>Base URL</th>
+                            <th>MerchantID</th>
+                            <th>MerchantKey</th>
+                            <th>SuccessURL</th>
+                            <th>FailURL</th>
+                            <th>StatusCheckURL</th>
+                            <th>IsLive</th>
+                            <th>IsLoggingTrue</th>
+                            <th>IsActive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+<script>
+
+    $(document).ready(function() {
+        loadData();
+    })
+      var loadData = function () {
+            $.post('/PaymentGateway/All').done(function (result) {
+                $('#tbl tbody').html(result);
+            }).fail(function (xhr) {
+                console.log(xhr.responseText);
+                alert('something went wrong');
+            })
+        };
+        var editDialog = (id = -1) => {
+             $.post('/PaymentGateway/Edit', { id: id }).done(function(result) {
+                Q.alert({
+                    title:'Payment Gateway',
+                    body:result
+                })
+            }).fail(function(xhr) {
+                console.log(xhr.responseText);
+                alert('error');
+            })
+        }
+
+    $('#btnNew').click(()=>editDialog());
+
+</script>
+}

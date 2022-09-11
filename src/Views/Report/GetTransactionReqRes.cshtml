@@ -1,0 +1,44 @@
+﻿@using TheMuscleBar.AppCode.Reops.Entities
+@model IEnumerable<APIModel>
+<style>
+    b {
+        font-weight: 700;
+    }
+</style>
+
+@if (Model.Any())
+{
+    foreach(var item in Model){
+        <div class="row p-2 mb-3">
+            <div class="col-3  p-1">
+                <b>TransactionID</b><br />
+                <span>@item.TID</span>
+            </div>
+            <div class="col-3">
+                <b>Method</b><br />
+                <span>@item.Method</span>
+            </div>
+            <div class="col-3">
+                <b>Date/Time</b><br />
+                <span>@item.EntryOn</span>
+            </div>
+            <div class="col-12 p-1 mt-3">
+                <b>Request</b>
+                <textarea class="form-control" disabled style="border-style:None;">@item.Request</textarea>
+            </div>
+            <div class="col-12 p-1">
+                <b>Response</b>
+                <textarea class="form-control" disabled style="border-style:None;">@item.Response</textarea>
+            </div>
+        </div>
+        <hr />
+    }
+}
+else
+{
+    <div class="row">
+        <div class="col-12 p-1 text-center">
+            <h6>No Data Available</h6>
+        </div>
+    </div>
+}

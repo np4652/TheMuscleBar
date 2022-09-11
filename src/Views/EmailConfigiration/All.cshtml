@@ -1,0 +1,20 @@
+﻿@model List<TheMuscleBar.AppCode.Reops.Entities.EmailConfig>
+@{
+    int sr = 0;
+    foreach (var item in Model)
+    {
+        sr++;
+        <tr data-config-id="@item.Id">
+            <td>@sr</td>
+            <td class="text-ellipsis"><span class="btn-edit btn-link cursor-pointer">@item.UserId</span></td>
+            <td class="text-ellipsis"><span class="btn-edit btn-link cursor-pointer">@item.EmailFrom</span></td>
+            <td class="text-ellipsis">@item.Password</td>
+            <td class="text-ellipsis">@item.HostName</td>
+            <td class="text-ellipsis">@item.Port</td>
+            <td class="text-ellipsis">@item.EnableSSL</td>
+        </tr>
+    }
+}
+<script>
+    $('.btn-edit').click(e => dialog.emailConfig($(e.currentTarget).closest('tr').data().configId));
+</script>

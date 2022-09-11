@@ -1,0 +1,94 @@
+﻿@using TheMuscleBar.AppCode.Enums;
+@model TheMuscleBar.AppCode.Reops.Entities.PaymentGatewayModel
+@{
+    var pgs = EnumHelper.GetSelectlist<PaymentGatewayType>(false);
+}
+<div class="row">
+    <div class="col-sm-12">
+        <input type="hidden" id="text" asp-for="Id" />
+        <label class="h6">PaymentGatewayId</label>
+        <select asp-items="pgs" asp-for=PGId class="form-control mb-2 mt-0" id="txtpgid"></select>
+        <span id="errorpgid"></span>
+        <label class="h6">BaseURL</label>
+        <input type="text" id="txtBaseURL" class="form-control mb-2 mt-0" placeholder=" Enter BaseURL " asp-for="BaseURL" />
+        <label class="h6">MerchantID</label>
+        <input type="text" id="txtMerchantID" class="form-control mb-2 mt-0" placeholder=" Enter MerchantID " asp-for="MerchantID" />
+        <span id="errorMerchantID"></span>
+        <label class="h6">MerchantKey</label>
+        <input type="text" id="txtMerchantKey" class="form-control mb-2 mt-0" placeholder=" Enter MerchantKey   " asp-for="MerchantKey" />
+        <label class="h6">SuccessURLPGId</label>
+        <input type="text" id="txtSURL" class="form-control mb-2 mt-0" placeholder="Enter SuccessURLPGId " asp-for="SuccessURL" />
+        <label class="h6">FailURL</label>
+        <input type="text" id="txtFurl" class="form-control mb-2 mt-0" placeholder="Enter FailURL " asp-for="FailURL" />
+        <label class="h6">StatusCheckURL</label>
+        <input type="text" id="txtScurl" class="form-control mb-2 mt-0" placeholder="Enter StatusCheckURL " asp-for="StatusCheckURL" />
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" asp-for="IsLive" id="IsLive" />
+                        <label class="custom-control-label" for="IsLive">IsLive</label>
+                    </div>
+                 
+
+
+                </div>
+                <div class="col-sm-4">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" asp-for="IsLoggingTrue" id="IsLoggingTrue" />
+                        <label class="custom-control-label" for="IsLoggingTrue">IsLoggingTrue</label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="IsActive" asp-for="IsActive" />
+                        <label class="custom-control-label" for="IsActive">IsActive</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" id="btnSubmit1">Submit</button>
+        </div>
+    </div>
+</div>
+<script>
+       $('#btnSubmit1').click(function() {
+        var obj = {
+            Id: $('#text').val(),
+            PGId: $('#txtpgid').val(),
+            BaseURL:$('#txtBaseURL').val(),
+            MerchantID: $('#txtMerchantID').val(),
+            MerchantKey: $('#txtMerchantKey').val(),
+            SuccessURL: $('#txtSURL').val(),
+            FailURL: $('#txtFurl').val(),
+            StatusCheckURL: $('#txtScurl').val(),
+            IsLive: $('#IsLive').is(":checked"),
+            IsLoggingTrue: $('#IsLoggingTrue').is(":checked"),
+            IsActive: $('#IsActive').is(":checked")
+
+        };
+        if (obj.PGId == '' || obj.PGId == '0') {
+            $('#errorpgid').text('plese enter valid pgid')
+            return false
+        }
+        if (obj.MerchantID == '') {
+            $('#errorMerchantID').text('plese enter valid MerchantID')
+            return false
+        }
+        $.post('/PaymentGateway/Save', obj).done(function(result) {
+            if (result.statusCode == 1) {
+                loadData();
+                $('.ui-dialog-titlebar-close').click();
+            }
+            Q.notify(result.statusCode, result.responseText);
+        }).fail(function(xhr) {
+            console.log(xhr.responseText)
+            alert('error');
+        })
+    })
+
+</script>
+
+
+

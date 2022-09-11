@@ -1,0 +1,186 @@
+﻿@{
+    ViewData["Title"] = "Report";
+    Layout = "_LayOut";
+}
+<link href="~/css/datatable-custome.css" rel="stylesheet" />
+<style>
+    #tbl_filter label {
+        display: none;
+        height: 20%;
+    }
+
+    #tbl_length select {
+        margin-bottom: 0;
+    }
+</style>
+<div class="card mt-2">
+    <div class="card-body pt-2 pb-2">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-3 text-right" id="customFilter" style="z-index:99">
+                <div class="input-group">
+                    <select class="form-control" id="ddlCol">
+                        <option value="tid">TID</option>
+                        <option value="req">Request</option>
+                        <option value="res">Response</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="input-group">
+                    <select class="form-control" id="ddlIncoming">
+                        <option value="false">Outgoing Only</option>
+                        <option value="true">Incoming Only</option>
+                        <option value="">All</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input id="txtSerch" class="form-control p-2" placeholder="Search On List" />
+                    <div class="input-group-append" id="search" style="">
+                        <label class="form-control pl-2 pr-2 text-white" id="searchBtn" style=" background-color: #e9ecef; border: 1px solid #ced4da;cursor:pointer;background:#2262c6">
+                            <span class="fas fa-search"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive ">
+            <table id="tbl" class="table table-bordered tblbtn">
+                <thead class="table-dark p-0">
+                    <tr>
+                        <th>#</th>
+                        <th>TID</th>
+                        <th>Request</th>
+                        <th>Response</th>
+                        <th>EntryOn</th>
+                        <th>Method</th>
+                        <th>IsIncoming</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="endTable"></div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            loadData();
+            $('#incomingOnly').click(() => loadData(true));
+            $('#searchBtn').click(() => loadData(true));
+        })
+        var loadData = function (customeEvent = false) {
+            var table = $.renderDataTable2({
+                columns: [
+                    {
+                        data: 'SrNo',
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    { data: "tid", orderable: false, class: 'text-nowrap' },
+                    {
+                        "render": function (d, t, row) {
+                            let beautifyJsonIcon = '';
+                            if (row.request && IsValidJson(row.request)) {
+                                beautifyJsonIcon = `<span class="pull-right ml-2" onclick="jsonBeautifier(this)"><i class="fa fa-search"></i></span>`;
+                            }
+                            return `<div class="box">
+                                                                    <input type="checkbox" id="expandedR${row.id}">
+                                                                    <p class="mb-0">${row.request}</p>
+                                                                    ${beautifyJsonIcon}
+                                                                    <span class="pull-right ml-2" onclick="copyToClipboard(this)" style="cursor:pointer;color:#2262c6"><i class="fas fa-clone"></i></span>
+                                                                    <label class="pull-right btn-link" for="expandedR${row.id}" role="button">read more</label></div>`
+                            //return `<p class="text-short mb-0">${row.request}</p>
+                            //        <span class="pull-right ml-2" onclick="copyToClipboard(this)" style="cursor:pointer;color:#2262c6"><i class="fas fa-clone"></i></span>
+                            //        <a class="pull-right more btn-link" href="javascript:void(0)">more</a>`
+                        },
+                        class: 'max-width-25'
+                    },
+                    {
+                        "render": function (d, t, row) {
+                            return `<div class="box">
+                                                                    <input type="checkbox" id="expanded${row.id}">
+                                                                    <p>${row.response}</p>
+                                                                    <span class="pull-right ml-2" onclick="jsonBeautifier(this)"><i class="fa fa-search"></i></span>
+                                                                    <span class="pull-right ml-2" onclick="copyToClipboard(this)" style="cursor:pointer;color:#2262c6"><i class="fas fa-clone"></i></span>
+                                                                    <label class="pull-right btn-link" for="expanded${row.id}" role="button">read more</label></div>
+                        `;
+                            //return `<p class="text-short mb-0">${row.response}</p>
+                            //        <span class="pull-right ml-2" onclick="copyToClipboard(this)" style="cursor:pointer;color:#2262c6"><i class="fas fa-clone"></i></span>
+                            //        <a class="pull-right more btn-link" href="javascript:void(0)">more</a>`
+
+                        },
+                        class: 'max-width-25'
+                    },
+                    { data: "entryOn", orderable: false, class: 'text-nowrap' },
+                    { data: "method", orderable: false, class: 'text-nowrap' },
+                    { data: "isIncomingOutgoing", orderable: false, class: 'text-nowrap' }
+                ],
+                filters: {
+                    IncomingOnly: $('#ddlIncoming').val(),
+                    Col: $('#ddlCol').val(),
+                    SearchVal: $('#txtSerch').val()
+                },
+                apiUrl: '/Report/APILogs',
+
+                //searching: false,
+                customeEvent: customeEvent,
+                buttons: [],
+                scrollY: window.innerHeight - $('.table').offset().top - 100,
+                afterDrawback: function () {
+                    const ps = document.querySelectorAll('p');
+                    const observer = new ResizeObserver(entries => {
+                        for (let entry of entries) {
+                            entry.target.classList[entry.target.scrollHeight > entry.contentRect.height ? 'add' : 'remove']('truncated');
+                        }
+                    });
+
+                    ps.forEach(p => {
+                        observer.observe(p);
+                    });
+                    //      $("#tbl_filter.dataTables_filter").append($("#customFilter"));
+                }
+            });
+        };
+
+
+        $(document).on('click', '.more', e => {
+            let ele = $(e.currentTarget);
+            ele.closest('td').find('.text-short,.text-full').toggleClass('text-short text-full');
+            let txt = ele.text();
+            txt = txt == 'more' ? 'less' : 'more';
+            ele.text(txt);
+        });
+
+
+        function copyToClipboard(element) {
+            let _text = $(element).parents('td').find('p').text();
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(_text).select();
+            document.execCommand("copy");
+            $temp.remove();
+            Q.notify(1, "Copied");
+        }
+
+        function jsonBeautifier(element) {
+            let _text = $(element).parents('td').find('p').text();
+            if (_text) {
+                var jsonObj = JSON.parse(_text);
+                Q.alert({
+                    title: 'Beautifier',
+                    body: `<div style="max-height:90vh;overflow:auto"><pre>${JSON.stringify(jsonObj, null, 4)}</pre></div>`,
+                });
+            }
+        }
+
+        const IsValidJson = str => (/^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@@')
+            .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+            replace(/(?:^|:|,)(?:\s*\[)+/g, '')));
+    </script>
+}
