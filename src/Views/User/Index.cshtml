@@ -5,7 +5,10 @@
     string role = User.GetLoggedInUserRoles();
 }
 <div class="card mt-2">
-    <div class="card-body pt-0">
+    <div class="card-body">
+        <div class="float-right">
+            <button id="btnAddUser" class="btn btn-sm btn-primary">New</button>
+        </div>
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -17,7 +20,6 @@
                             <th>Mobile</th>
                             <th>EmailID</th>
                             <th>Action</th>
-                           
                         </tr>
                     </thead>
                     <tbody>
@@ -30,29 +32,18 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            loadData().then(s => { });
+            loadData();
+        });
+        $('#btnAddUser').click(() => {
+            $.post('/Account/_Register').done(result => {
+                Q.alert({
+                    body: result
+                });
+            }).fail(xhr => Q.notify(-1, xhr.responseText));
         });
         $('.btnaddUser').click(() => dialog.user(-1));
-         async function loadData() {
-            Q.preloader.load();
-            let role = 'all';
-            let _url = new URL(window.location.href);
-            let path = _url.pathname.split('/');
-            if (path.length >= 3) {
-                role = path[3];
-            }
-            $.ajax({
-                type: 'post',
-                url: '/User/UsersList',
-                success: function (data) {
-                    $('tbody').html(data);
-                },
-                error: function (data) {
-                    console.log('An error occurred.',data);
-                    Q.notify(-1, 'An error occurred.');
-                },
-            });
-            Q.preloader.remove();
+        var loadData = () => {
+            $.post('/User/UsersList').done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
         }
     </script>
 }

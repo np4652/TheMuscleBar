@@ -43,22 +43,10 @@ else
 }
 
 <script>
-    $("table").DataTable({
-        paging: true,
-        dom: "<'row'<'col-sm-12'frt>>" +
-            "<'row'<'col-sm-4'l><'col-sm-8'p>>" +
-            "<'row'<'col-sm-12'i>>",
-        searching: true,
-        destroy: true,
-        scrollY: window.innerHeight - $('.table').offset().top - 155,
-    });
     $('.btnaddUser').click(e => {
         let _id = $(e.currentTarget).closest('tr').data().userId;
         dialog.user(_id);
     });
-
-
-    
     $('.IsActive').unbind().click(e => {       
         let element = $(e.currentTarget).closest('tr');
         let param = {

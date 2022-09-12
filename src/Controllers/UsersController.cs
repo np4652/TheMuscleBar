@@ -31,10 +31,10 @@ namespace TheMuscleBar.Controllers
 
         [Authorize(Roles = "1")]
         [HttpPost]
-        public async Task<IActionResult> UsersList(string role)
+        public async Task<IActionResult> UsersList(Role role=Role.Customer)
         {
             int loginId = User.GetLoggedInUserId<int>();
-            var users = await _users.GetAllAsync(new ApplicationUser { Role = role }, loginId);
+            var users = await _users.GetAllAsync(new ApplicationUser { Role = role.ToString() }, loginId);
             return PartialView("~/Views/Account/PartialView/_UsersList.cshtml", users);
         }
 

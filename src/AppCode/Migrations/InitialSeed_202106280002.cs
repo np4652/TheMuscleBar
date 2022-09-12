@@ -38,8 +38,8 @@ namespace TheMuscleBar.AppCode.Migrations
                 }).Row(new
                 {
                     ConcurrencyStamp = Guid.NewGuid().ToString(),
-                    Name = "Fos",
-                    NormalizedName = "FOS"
+                    Name = "Trainer",
+                    NormalizedName = "TRAINER"
                 }).Row(new
                 {
                     ConcurrencyStamp = Guid.NewGuid().ToString(),
@@ -52,18 +52,18 @@ namespace TheMuscleBar.AppCode.Migrations
                   UserId = Guid.NewGuid().ToString(),
                   AccessFailedCount = 0,
                   ConcurrencyStamp = "411ecb83-6ae9-4c86-9364-e85fc290e9ea",
-                  Email = "admin@roundpay.net",
+                  Email = "Admin",
                   EmailConfirmed = false,
                   LockoutEnabled = false,
                   LockoutEnd = DateTime.Now,
-                  NormalizedEmail = "ADMIN@ROUNDPAY.NET",
-                  NormalizedUserName = "ADMIN@ROUNDPAY.NET",
+                  NormalizedEmail = "Admin",
+                  NormalizedUserName = "Admin",
                   PasswordHash = "AQAAAAEAACcQAAAAEBAePcp00ZZ3yX9g7osGDRy0shH6up80DmruJmCASZz+Yq43qPac2Xy2pBrE6DkiBA==",
                   PhoneNumberConfirmed = false,
                   PhoneNumber = "9044004486",
                   SecurityStamp = "",
                   TwoFactorEnabled = false,
-                  UserName = "admin@roundpay.net"
+                  UserName = "Admin"
               });
             Insert.IntoTable("UserRoles")
               .Row(new

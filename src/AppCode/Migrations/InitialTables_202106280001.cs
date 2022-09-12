@@ -46,7 +46,9 @@ namespace TheMuscleBar.AppCode.Migrations
                .WithColumn("TwoFactorEnabled").AsBoolean().NotNullable()
                .WithColumn("UserName").AsString(256).NotNullable()
                .WithColumn("RefreshToken").AsString(256).Nullable()
-               .WithColumn("RefreshTokenExpiryTime").AsDateTime().Nullable();
+               .WithColumn("RefreshTokenExpiryTime").AsDateTime().Nullable()
+               .WithColumn("Name").AsString(80)
+               .WithColumn("IsActive").AsBoolean();
 
             /* UserClaims */
             Create.Table("UserClaims")

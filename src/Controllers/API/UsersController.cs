@@ -35,7 +35,7 @@ namespace TheMuscleBar.Controllers.API
                 _user = loginResponse.Result;
             }
         }
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpPost(nameof(UsersList))]
         public async Task<IActionResult> UsersList(string role, bool onlyDebtCustomer = false)
         {
@@ -90,7 +90,7 @@ namespace TheMuscleBar.Controllers.API
                 UserId = Guid.NewGuid().ToString(),
                 UserName = model.Email,
                 Email = model.Email,
-                Role = Role.APIUser.ToString(),
+                Role = Role.Customer.ToString(),
                 Name = model.Name,
                 PhoneNumber = model.PhoneNumber
             };
@@ -98,7 +98,7 @@ namespace TheMuscleBar.Controllers.API
             if (res.Succeeded)
             {
                 user = _userManager.FindByEmailAsync(user.Email).Result;
-                await _userManager.AddToRoleAsync(user, Role.APIUser.ToString());
+                await _userManager.AddToRoleAsync(user, Role.Customer.ToString());
                 model.Password = string.Empty;
                 model.Email = string.Empty;
                 ModelState.Clear();
@@ -115,7 +115,5 @@ namespace TheMuscleBar.Controllers.API
             }
             return Ok(response);
         }
-
-       
     }
 }

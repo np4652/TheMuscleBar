@@ -66,6 +66,12 @@ namespace TheMuscleBar.Controllers
         }
 
         [HttpPost]
+        public IActionResult _Register()
+        {
+            return PartialView("partialView/_Register", new RegisterViewModel());
+        }
+
+        [HttpPost]
         //[ValidateAjax]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -83,7 +89,7 @@ namespace TheMuscleBar.Controllers
                     UserId = Guid.NewGuid().ToString(),
                     UserName = model.Email.Trim(),
                     Email = model.Email.Trim(),
-                    Role = Role.APIUser.ToString(),
+                    Role = Role.Customer.ToString(),
                     Name = model.Name,
                     PhoneNumber = model.PhoneNumber
                 };
@@ -91,7 +97,17 @@ namespace TheMuscleBar.Controllers
                 if (res.Succeeded)
                 {
                     user = _userManager.FindByEmailAsync(user.Email).Result;
-                    await _userManager.AddToRoleAsync(user, Role.APIUser.ToString());
+                    if (model.ProfilePic != null)
+                    {
+                        response = AppUtility.O.UploadFile(new FileUploadModel
+                        {
+                            file = model.ProfilePic,
+                            FileName = $"profile_{user.Id}.png",
+                            FilePath = FileDirectories.Profile,
+                            IsThumbnailRequired = false
+                        });
+                    }
+                    //await _userManager.AddToRoleAsync(user, Role.Customer.ToString());
                     model.Password = string.Empty;
                     model.Email = string.Empty;
                     response.StatusCode = ResponseStatus.Success;
@@ -102,7 +118,8 @@ namespace TheMuscleBar.Controllers
                 }
                 model.ResponseText = response.ResponseText;
                 model.StatusCode = response.StatusCode;
-                return View(model);
+                //return View(model);
+                return Json(model);
             }
             return View(model);
         }

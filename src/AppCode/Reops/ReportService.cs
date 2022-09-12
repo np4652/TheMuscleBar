@@ -73,12 +73,12 @@ namespace TheMuscleBar.AppCode.Reops
 
         public async Task<APIUserCounts> GetUserDashboardsummary(int UserId)
         {
-            return await _dapper.GetAsync<APIUserCounts>("proc_Dashboardsummary", new { userId = UserId, roleId = Role.APIUser }, System.Data.CommandType.StoredProcedure);
+            return await _dapper.GetAsync<APIUserCounts>("proc_Dashboardsummary", new { userId = UserId, roleId = Role.Customer }, System.Data.CommandType.StoredProcedure);
         }
 
         public async Task<APIUserCounts> GetUserDashboardAmnt(int UserId)
         {
-            return await _dapper.GetAsync<APIUserCounts>("proc_Dashboardsummary", new { userId = UserId, roleId = Role.APIUser }, System.Data.CommandType.StoredProcedure);
+            return await _dapper.GetAsync<APIUserCounts>("proc_Dashboardsummary", new { userId = UserId, roleId = Role.Customer }, System.Data.CommandType.StoredProcedure);
         }
         public async Task<AdminUserCounts> GetAdminDashboardsummary(int UserId)
         {

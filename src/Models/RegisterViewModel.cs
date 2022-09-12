@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 using TheMuscleBar.AppCode.Enums;
 
 namespace TheMuscleBar.Models
@@ -37,5 +38,6 @@ namespace TheMuscleBar.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password and compare password do not match..")]
         public string ConfirmPassword { get; set; }
+        public IFormFile ProfilePic { get; set; }
     }
 }
