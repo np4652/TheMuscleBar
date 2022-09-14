@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using TheMuscleBar.AppCode.Enums;
 
 namespace TheMuscleBar.Models
 {
     public class ApplicationUser: ApplicationUserProcModel
     {
-        public decimal Balance { get; set; }
-        public decimal RemainTarget { get; set; }
-        public bool OnlyDebtCustomer { get; set; }
-        public string FOS { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
         public bool IsActive { get; set; }
@@ -17,13 +14,17 @@ namespace TheMuscleBar.Models
 
     public class ApplicationUserProcModel : IdentityUser<int>
     {
-        public string UserId { get; set; }
+        //public string UserId { get; set; }
         public string Role { get; set; }
         public string Name { get; set; }
-        public int FOSId { get; set; }
-      
-       
-     
+        public string Gender { get; set; }
+        public string DOB { get; set; }
+        public string Address { get; set; }
+        public string AdharNo { get; set; }
+        public string MaritalStatus { get; set; }
+        public string Occupation { get; set; }
+        public string ReferBy { get; set; }
+        public MembershipType MembershipType { get; set; }
 
     }
 

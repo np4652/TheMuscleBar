@@ -82,17 +82,9 @@ namespace TheMuscleBar.Controllers
             };
             if (ModelState.IsValid)
             {
-                var EmailId = model.Email;
-                var user = new ApplicationUser
-                {
-                    
-                    UserId = Guid.NewGuid().ToString(),
-                    UserName = model.Email.Trim(),
-                    Email = model.Email.Trim(),
-                    Role = Role.Customer.ToString(),
-                    Name = model.Name,
-                    PhoneNumber = model.PhoneNumber
-                };
+                var user = _mapper.Map<ApplicationUser>(model);
+                user.UserName = model.Email.Trim();
+                user.Role = Role.Customer.ToString();
                 var res = await _userManager.CreateAsync(user, model.Password);
                 if (res.Succeeded)
                 {
@@ -327,7 +319,7 @@ Finish:
         public async Task<IActionResult> UsersDropdown(int id, string role)
         {
             var users = await _users.GetAllAsync(new ApplicationUser { Id = id, Role = role });
-            return Json(users.Select(x => new { x.UserId, x.Email, x.Name }).ToList());
+            return Json(users.Select(x => new { x.Id, x.Email, x.Name }).ToList());
         }
         
     }

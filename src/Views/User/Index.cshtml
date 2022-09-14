@@ -34,12 +34,20 @@
         $(document).ready(function () {
             loadData();
         });
-        $('#btnAddUser').click(() => {
-            $.post('/Account/_Register').done(result => {
+        var editUser = (id = -1) => {
+            $.post('/User/Edit', { id }).done(result => {
                 Q.alert({
                     body: result
                 });
             }).fail(xhr => Q.notify(-1, xhr.responseText));
+        };
+        $('#btnAddUser').click(() => {
+            editUser()
+            //$.post('/Account/_Register').done(result => {
+            //    Q.alert({
+            //        body: result
+            //    });
+            //}).fail(xhr => Q.notify(-1, xhr.responseText));
         });
         $('.btnaddUser').click(() => dialog.user(-1));
         var loadData = () => {

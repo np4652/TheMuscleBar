@@ -9,10 +9,14 @@
 
     @foreach (var item in Model)
     {
-        <tr data-user-id="@item.Id" data-fos-id="@item.FOSId">
+        <tr data-user-id="@item.Id">
             <td>@i</td>
             <td>
-                <span class="btn-link cursor-pointer btnaddUser">@Html.DisplayFor(modelItem => item.Name)</span>
+                <img class="img-thumbnail rounded-circle mr-2" style="width:50px;height:50px" src="~/images/Profile/profile_@(item.Id).png" />
+                <span class="btn-link cursor-pointer btnaddUser">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </span>
+                <span class="d-block btn-link pull-right">Collect Fee</span>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
@@ -23,8 +27,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-           
-             <td>
+
+            <td>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input IsActive" id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
                     <label class="custom-control-label" for="IsActive_@i"></label>
@@ -45,9 +49,10 @@ else
 <script>
     $('.btnaddUser').click(e => {
         let _id = $(e.currentTarget).closest('tr').data().userId;
-        dialog.user(_id);
+        //dialog.user(_id);
+        editUser(_id);
     });
-    $('.IsActive').unbind().click(e => {       
+    $('.IsActive').unbind().click(e => {
         let element = $(e.currentTarget).closest('tr');
         let param = {
             Id: element.data().userId

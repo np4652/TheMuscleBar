@@ -27,6 +27,13 @@ namespace TheMuscleBar.Models
         public string Email { get; set; }
         public string Address { get; set; }
         public string PinCode { get; set; }
+        public string Gender { get; set; }
+        public string DOB { get; set; }        
+        public string AdharNo { get; set; }
+        public string MaritalStatus { get; set; }
+        public string Occupation { get; set; }
+        public string ReferBy { get; set; }
+        public MembershipType MembershipType { get; set; }
     }
     public class RegisterViewModel: Register
     {

@@ -29,8 +29,7 @@ namespace TheMuscleBar.AppCode.Migrations
 
             /* Users */
             Create.Table("Users")
-               .WithColumn("Id").AsInt64().NotNullable().Identity()
-               .WithColumn("UserId").AsString(1000).NotNullable().PrimaryKey()
+               .WithColumn("Id").AsInt64().NotNullable().Identity().PrimaryKey()
                .WithColumn("AccessFailedCount").AsInt64()
                .WithColumn("ConcurrencyStamp").AsString(1000)
                .WithColumn("Email").AsString(256).NotNullable()
@@ -41,14 +40,23 @@ namespace TheMuscleBar.AppCode.Migrations
                .WithColumn("NormalizedUserName").AsString(256).NotNullable()
                .WithColumn("PasswordHash").AsString(256).NotNullable()
                .WithColumn("PhoneNumberConfirmed").AsBoolean().NotNullable()
-               .WithColumn("PhoneNumber").AsString()
+               .WithColumn("PhoneNumber").AsString().NotNullable()
                .WithColumn("SecurityStamp").AsString(1000)
                .WithColumn("TwoFactorEnabled").AsBoolean().NotNullable()
                .WithColumn("UserName").AsString(256).NotNullable()
                .WithColumn("RefreshToken").AsString(256).Nullable()
                .WithColumn("RefreshTokenExpiryTime").AsDateTime().Nullable()
-               .WithColumn("Name").AsString(80)
-               .WithColumn("IsActive").AsBoolean();
+               .WithColumn("Name").AsString(80).NotNullable()
+               .WithColumn("Gender").AsFixedLengthString(1).NotNullable()
+               .WithColumn("DOB").AsDateTime().NotNullable()
+               .WithColumn("Address").AsString(160).NotNullable()
+               .WithColumn("AdharNo").AsString(20).NotNullable()
+               .WithColumn("MaritalStatus").AsFixedLengthString(1).NotNullable()
+               .WithColumn("Occupation").AsString(15).NotNullable()
+               .WithColumn("ReferBy").AsInt64().NotNullable()
+               .WithColumn("MembershipType").AsFixedLengthString(1).NotNullable()
+               .WithColumn("EntryOn").AsDateTime().NotNullable()
+               .WithColumn("IsActive").AsBoolean().NotNullable();
 
             /* UserClaims */
             Create.Table("UserClaims")

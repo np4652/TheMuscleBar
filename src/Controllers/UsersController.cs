@@ -71,7 +71,7 @@ namespace TheMuscleBar.Controllers
         public async Task<IActionResult> SecurityCode()
         {
             var user = await _userManager.FindByIdAsync(User.GetLoggedInUserId<int>().ToString());
-            return Json(new {SecurityCode = user.ConcurrencyStamp, MerchantId = user.UserId});
+            return Json(new {SecurityCode = user.ConcurrencyStamp, MerchantId = ""});
         }
 
         [HttpPost]

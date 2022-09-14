@@ -10,7 +10,7 @@ namespace TheMuscleBar.AppCode.Helper
         public AutoMapperProfile()
         {
             CreateMap<EmailConfig, EmailSettings>();
-            CreateMap<ApplicationUser, RegisterViewModel>();
+            CreateMap<ApplicationUser, RegisterViewModel>().ReverseMap();
             CreateMap<ApplicationUser, UserUpdateRequest>();
             CreateMap<ApplicationUser, Register>();
             CreateMap<ApplicationUserProcModel, ApplicationUser>().ReverseMap();

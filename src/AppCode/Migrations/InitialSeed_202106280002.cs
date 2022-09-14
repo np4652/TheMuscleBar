@@ -1,6 +1,7 @@
 ﻿using FluentMigrator;
 using TheMuscleBar.Models;
 using System;
+using TheMuscleBar.AppCode.Enums;
 
 namespace TheMuscleBar.AppCode.Migrations
 {
@@ -49,7 +50,7 @@ namespace TheMuscleBar.AppCode.Migrations
             Insert.IntoTable("Users")
               .Row(new
               {
-                  UserId = Guid.NewGuid().ToString(),
+                  //UserId = Guid.NewGuid().ToString(),
                   AccessFailedCount = 0,
                   ConcurrencyStamp = "411ecb83-6ae9-4c86-9364-e85fc290e9ea",
                   Email = "Admin",
@@ -60,10 +61,21 @@ namespace TheMuscleBar.AppCode.Migrations
                   NormalizedUserName = "Admin",
                   PasswordHash = "AQAAAAEAACcQAAAAEBAePcp00ZZ3yX9g7osGDRy0shH6up80DmruJmCASZz+Yq43qPac2Xy2pBrE6DkiBA==",
                   PhoneNumberConfirmed = false,
-                  PhoneNumber = "9044004486",
+                  PhoneNumber = "9936301548",
                   SecurityStamp = "",
                   TwoFactorEnabled = false,
-                  UserName = "Admin"
+                  UserName = "Admin",
+                  Name = "Amit Singh",
+                  Gender = "M",
+                  DOB = "01 Jan 2020",
+                  Address = "N/A",
+                  AdharNo = "N/A",
+                  MaritalStatus = "S",
+                  Occupation="Service",
+                  ReferBy="",
+                  MembershipType = Convert.ToString((int)MembershipType.Yearly),
+                  IsActive=true,
+                  EntryOn=DateTime.Now.ToString("dd MMM yyyy")
               });
             Insert.IntoTable("UserRoles")
               .Row(new

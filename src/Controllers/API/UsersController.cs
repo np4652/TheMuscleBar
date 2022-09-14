@@ -39,9 +39,8 @@ namespace TheMuscleBar.Controllers.API
         [HttpPost(nameof(UsersList))]
         public async Task<IActionResult> UsersList(string role, bool onlyDebtCustomer = false)
         {
-            var users = await _users.GetAllAsync(new ApplicationUser { Role = role, OnlyDebtCustomer = onlyDebtCustomer }, _user.Id);
-            var response = users.Select(x => new { x.Name, x.Email, x.FOSId, x.Id, x.PhoneNumber, x.Balance, x.RemainTarget, x.FOS });
-            return Ok(response);
+            var users = await _users.GetAllAsync(new ApplicationUser { Role = role}, _user.Id);
+            return Ok(User);
         }
 
         [HttpPost(nameof(GetById))]
@@ -72,48 +71,48 @@ namespace TheMuscleBar.Controllers.API
             }
             return response;
         }
-        [AllowAnonymous]
-        [HttpPost(nameof(Register))]
-        public async Task<IActionResult> Register(RegisterViewModel model)
-        {
-            Response response = new Response()
-            {
-                StatusCode = ResponseStatus.Failed,
-                ResponseText = "Registration Failed"
-            };
-            if (!ModelState.IsValid)
-            {
-                return Ok(response);
-            }
-            var user = new ApplicationUser
-            {
-                UserId = Guid.NewGuid().ToString(),
-                UserName = model.Email,
-                Email = model.Email,
-                Role = Role.Customer.ToString(),
-                Name = model.Name,
-                PhoneNumber = model.PhoneNumber
-            };
-            var res = await _userManager.CreateAsync(user, model.Password);
-            if (res.Succeeded)
-            {
-                user = _userManager.FindByEmailAsync(user.Email).Result;
-                await _userManager.AddToRoleAsync(user, Role.Customer.ToString());
-                model.Password = string.Empty;
-                model.Email = string.Empty;
-                ModelState.Clear();
-                response.StatusCode = ResponseStatus.Success;
-                response.ResponseText = "Register Successfully";
-            }
-            else
-            {
-                foreach (var error in res.Errors)
-                {
-                    ModelState.TryAddModelError("", error.Description);
-                    response.ResponseText = error.Description;
-                }
-            }
-            return Ok(response);
-        }
+        //[AllowAnonymous]
+        //[HttpPost(nameof(Register))]
+        //public async Task<IActionResult> Register(RegisterViewModel model)
+        //{
+        //    Response response = new Response()
+        //    {
+        //        StatusCode = ResponseStatus.Failed,
+        //        ResponseText = "Registration Failed"
+        //    };
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Ok(response);
+        //    }
+        //    var user = new ApplicationUser
+        //    {
+        //        //UserId = Guid.NewGuid().ToString(),
+        //        UserName = model.Email,
+        //        Email = model.Email,
+        //        Role = Role.Customer.ToString(),
+        //        Name = model.Name,
+        //        PhoneNumber = model.PhoneNumber
+        //    };
+        //    var res = await _userManager.CreateAsync(user, model.Password);
+        //    if (res.Succeeded)
+        //    {
+        //        user = _userManager.FindByEmailAsync(user.Email).Result;
+        //        await _userManager.AddToRoleAsync(user, Role.Customer.ToString());
+        //        model.Password = string.Empty;
+        //        model.Email = string.Empty;
+        //        ModelState.Clear();
+        //        response.StatusCode = ResponseStatus.Success;
+        //        response.ResponseText = "Register Successfully";
+        //    }
+        //    else
+        //    {
+        //        foreach (var error in res.Errors)
+        //        {
+        //            ModelState.TryAddModelError("", error.Description);
+        //            response.ResponseText = error.Description;
+        //        }
+        //    }
+        //    return Ok(response);
+        //}
     }
 }

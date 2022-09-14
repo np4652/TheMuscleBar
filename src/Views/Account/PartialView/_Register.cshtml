@@ -50,19 +50,88 @@
                 </div>
             </div>
         }
-
-    <div class="col-sm-12 text-right">
-        <div class="form-group">
-            <input type="file" name="@nameof(Model.ProfilePic)"/>
-        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
             <div class="form-group">
-                <button type="submit" id="btnSubmit" class="btn btn-block btn-primary mb-4">@Html.Raw(Model.Id == 0 ? "Create" : "Update") </button>
+                <label asp-for="Gender" class="control-label"></label>
+                <select required="" name="@nameof(Model.Gender)">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
         </div>
-    </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label asp-for="DOB" class="control-label"></label>
+                <input type="text" value="@Model.DOB" id="txtDOB" required="" name="@nameof(Model.DOB)" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label asp-for="AdharNo" class="control-label"></label>
+                <input type="text" value="@Model.AdharNo" id="txtAdharNo" required="" name="@nameof(Model.AdharNo)" />
+                <span asp-validation-for="AdharNo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label asp-for="Occupation" class="control-label"></label>
+                <input type="text" value="@Model.Occupation" id="txtOccupation" required="" name="@nameof(Model.Occupation)" />
+                <span asp-validation-for="Occupation" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label asp-for="ReferBy" class="control-label"></label>
+                <input type="text" value="@Model.ReferBy" id="txtReferBy" required="" name="@nameof(Model.ReferBy)" />
+                <span asp-validation-for="ReferBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label asp-for="MaritalStatus" class="control-label"></label>
+                <select required="" name="@nameof(Model.MaritalStatus)">
+                    <option value="S">Single</option>
+                    <option value="M">Married</option>
+                </select>
+                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label asp-for="MembershipType" class="control-label"></label>
+                <select required="" name="@nameof(Model.MembershipType)">
+                    <option value="@MembershipType.Monthly">@MembershipType.Monthly</option>
+                    <option value="@MembershipType.Quarterly">@MembershipType.Quarterly</option>
+                    <option value="@MembershipType.HalfYearly">@MembershipType.HalfYearly</option>
+                    <option value="@MembershipType.Yearly">@MembershipType.Yearly</option>
+                </select>
+                <span asp-validation-for="MembershipType" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 text-right">
+            <div class="form-group">
+                <textarea name="@nameof(Model.Address)" required=""></textarea>
+            </div>
+                <div class="form-group">
+                    <input type="file" name="@nameof(Model.ProfilePic)" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="btnSubmit" class="btn btn-block btn-primary mb-4">@Html.Raw(Model.Id == 0 ? "Create" : "Update") </button>
+                </div>
+            </div>
+
+        </div>
 </form>
+<script>
+    $('#txtDOB').datepicker({
+        dateFormat: 'dd M yy'
+    });
+</script>
 @section Scripts{
     <script>
+
         function getUserss() {
             Q.preloader.load();
             $.ajax({

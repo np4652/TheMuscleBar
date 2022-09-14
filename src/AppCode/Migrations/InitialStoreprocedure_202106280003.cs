@@ -14,20 +14,24 @@ namespace TheMuscleBar.AppCode.Migrations
         public override void Up()
         {
 			//Execute.EmbeddedScript("Database.Migrations.201607150000_Initial_StoreProcedure.sql");
-            Execute.Sql(@"Create proc [dbo].[AddUser](@Id int,@UserId varchar(60),@SecurityStamp nvarchar(max)='' ,@PhoneNumberConfirmed bit,              
+            Execute.Sql(@"Create proc [dbo].[AddUser](@Id int,@SecurityStamp nvarchar(max)='' ,@PhoneNumberConfirmed bit,              
                                                      @PhoneNumber nvarchar(15)='',@PasswordHash nvarchar(max) ,@NormalizedUserName nvarchar(256) ,               
                                                      @NormalizedEmail nvarchar (256) ,@LockoutEnd datetimeoffset(7) = '',@LockoutEnabled bit,
-                                                     @EmailConfirmed bit ,@Email nvarchar(256) ,@ConcurrencyStamp nvarchar(max) ,@AccessFailedCount int   ,            
-                                                     @TwoFactorEnabled bit,@UserName nvarchar(256),@Role varchar(30),@Name varchar(100),@FOSID int        
+                                                     @EmailConfirmed bit ,@Email nvarchar(256) ,@ConcurrencyStamp nvarchar(max) ,@AccessFailedCount int,
+                                                     @TwoFactorEnabled bit,@UserName nvarchar(256),@Role varchar(30),@Name varchar(100),
+                                                     @Gender char(1),@DOB varchar(11),@Address varchar(160),@AdharNo varchar(20),@MaritalStatus char(1),
+                                                     @Occupation varchar(15),@ReferBy varchar(10),@MembershipType char(1)
                                                      )                
                             AS            
                             BEGIN            
                              Begin Try            
                               Begin Tran      
-                               insert into Users (UserId, UserName,     NormalizedUserName,     Email,     NormalizedEmail,     EmailConfirmed,     PasswordHash,                 SecurityStamp,              ConcurrencyStamp,                
-                                    PhoneNumber,     PhoneNumberConfirmed,     TwoFactorEnabled,     LockoutEnd,     LockoutEnabled,     AccessFailedCount,[Name],IsActive)                   
-                                  values(@UserId, @UserName,@NormalizedUserName,     @Email,     @NormalizedEmail,     @EmailConfirmed,     @PasswordHash,  ISNULL                (@SecurityStamp,''),         @ConcurrencyStamp,                
-                                     ISNULL(@PhoneNumber,''),     @PhoneNumberConfirmed,     @TwoFactorEnabled,ISNULL(@LockoutEnd,GetDate()), @LockoutEnabled,                    @AccessFailedCount,@Name,1)                      
+                               insert into Users (UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,
+                                                  PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount,[Name],IsActive,
+                                                  Gender,DOB,Address,AdharNo,MaritalStatus,Occupation,ReferBy,MembershipType,EntryOn)
+                                           values(@UserName,@NormalizedUserName,@Email,@NormalizedEmail,@EmailConfirmed,@PasswordHash,ISNULL(@SecurityStamp,''),
+                                                  @ConcurrencyStamp,ISNULL(@PhoneNumber,''),@PhoneNumberConfirmed,@TwoFactorEnabled,ISNULL(@LockoutEnd,GetDate()),
+                                                  @LockoutEnabled,@AccessFailedCount,@Name,1,@Gender,@DOB,@Address,@AdharNo,@MaritalStatus,@Occupation,0,@MembershipType,Getdate())
                                Select @Id = SCOPE_IDENTITY()            
                                Declare @RoleId int            
                                Select @RoleId = Id from ApplicationRole(nolock) where [Name]=@Role            
@@ -44,11 +48,11 @@ namespace TheMuscleBar.AppCode.Migrations
                              End Catch            
                              end");
             Execute.Sql(@"CREATE Proc [dbo].[UpdateUser]
-							                            @Id int,
-							                            @PasswordHash nvarchar(max) ,							
-							                            @TwoFactorEnabled bit,
-							                            @RefreshToken varchar(256) = '',
-							                            @RefreshTokenExpiryTime varchar(256) = null
+							                  @Id int,
+							                  @PasswordHash nvarchar(max) ,							
+							                  @TwoFactorEnabled bit,
+							                  @RefreshToken varchar(256) = '',
+							                  @RefreshTokenExpiryTime varchar(256) = null
                             AS    
                             BEGIN    
                              IF ISNULL(@PasswordHash,'')<>''  
@@ -76,7 +80,7 @@ return
 end      
 if(@Id=0 and @Email<>'')      
 begin      
-select  @Id=ID from Users where NormalizedUserName=@Email      
+select  @Id=Id from Users where NormalizedUserName=@Email      
 end      
       
 select RoleId from UserRoles where UserID=@Id      

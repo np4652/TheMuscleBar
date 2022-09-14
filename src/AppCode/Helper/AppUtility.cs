@@ -49,7 +49,7 @@ namespace TheMuscleBar.AppCode.Helper
                     string[] Extensions = { ".png", ".jpeg", ".jpg" };
                     if (Extensions.Contains(originalExt))
                     {
-                        //originalExt = ".jpg";
+                        originalExt = ".png";
                     }
                     string originalFileName = Path.GetFileNameWithoutExtension(filename).ToLower() + originalExt;
                     if (!string.IsNullOrEmpty(request.FileName))
