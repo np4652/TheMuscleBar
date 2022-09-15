@@ -1,19 +1,12 @@
 ﻿using TheMuscleBar.AppCode.Interfaces;
 using TheMuscleBar.Models;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using TheMuscleBar.AppCode.Reops.Entities;
 using TheMuscleBar.AppCode.DAL;
-using Dapper;
 using System.Data;
 using TheMuscleBar.AppCode.Enums;
+using TheMuscleBar.AppCode.Reops.Entities;
 
 namespace TheMuscleBar.AppCode.Reops
 {
@@ -33,32 +26,6 @@ namespace TheMuscleBar.AppCode.Reops
                 StatusCode = res != -1 ? ResponseStatus.Success : ResponseStatus.Failed,
                 ResponseText = res != -1 ? ResponseStatus.Success.ToString() : ResponseStatus.Failed.ToString(),
             };
-        }
-
-        public async Task<Response> ChangeAction(int id)
-        {
-
-            string sqlQuery = @"UPDATE Users SET IsActive = 1^IsActive Where id = @id";
-            int i = await _dapper.ExecuteAsync(sqlQuery, new { id }, CommandType.Text);
-            var response = new Response();
-            if (i > -1)
-            {
-                response.StatusCode = ResponseStatus.Success;
-                response.ResponseText = ResponseStatus.Success.ToString();
-            }
-            return response;
-        }
-
-        public async Task<Response> AssignPackage(int userId, int packageId)
-        {
-            var response = await _dapper.GetAsync<Response>("Proc_AssignPackage", new { userId, packageId }, CommandType.StoredProcedure);
-            return response;
-        }
-
-        public async Task<Response> Assignpackage(int TID)
-        {
-            var response = await _dapper.GetAsync<Response>("proc_UpdatePayment", new { TID }, commandType: CommandType.StoredProcedure);
-            return response;
         }
 
         public Task<Response> DeleteAsync(int id)
@@ -101,6 +68,20 @@ namespace TheMuscleBar.AppCode.Reops
         public Task<IReadOnlyList<ApplicationUser>> GetDropdownAsync(ApplicationUser entity)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Response<string>> CollectFee(CollectFee collectFee)
+        {
+            var res = new Response<string>();
+            try
+            {
+                res = await _dapper.GetAsync<Response<string>>("proc_CollectFee", collectFee, CommandType.StoredProcedure);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return res;
         }
     }
 }

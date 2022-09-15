@@ -85,6 +85,31 @@ end
       
 select RoleId from UserRoles where UserID=@Id      
 end");
-		}
+            Execute.Sql(@"Create proc proc_CollectFee
+                            							@UserId int,
+                            							@Amount numeric(18,2),
+                            							@Discount numeric(18,2),
+                            							@FromDate varchar(10),
+                            							@ToDate varchar(10),
+                            							@TransactionType tinyint,
+                            							@PaymentMode  tinyint,
+                            							@EntryBy int
+                            AS
+                            BEGIN
+                            	BEGIN TRY
+                            		BEGIN TRAN
+                            			DECLARE @LedgerId int
+                            			insert into Ledger(UserId,TransactionType,Amount,discount,PaymentMode,EntryOn,EntryBy) Values (@UserId,@TransactionType,@Amount,@discount,@PaymentMode,GETDATE(),@EntryBy)
+                            			SET @LedgerId = SCOPE_IDENTITY()
+                            			Insert into UserSubscription(UserId,DateFrom,DateTo,LedgerId) values (@UserId,@FromDate,@ToDate,@LedgerId)
+                            			Select 1 StatusCode,'Success' ResponseText
+                            		COMMIT
+                            	END TRY
+                            	BEGIN CATCH
+                            		ROLLBACK
+                            		Select -1 StatusCode,'Something went wrong' ResponseText
+                            	END CATCH
+                            END");
+        }
     }
 }

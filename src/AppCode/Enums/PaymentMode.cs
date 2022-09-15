@@ -1,6 +1,6 @@
 ﻿namespace TheMuscleBar.AppCode.Enums
 {
-    public enum CollectionType
+    public enum PaymentMode
     {
         Cash = 1,
         Bank = 2,

@@ -11,7 +11,7 @@
     <link rel="icon" href="~/images/favicon.png" type="image/x-icon">
 
     <!-- Title -->
-    <title>UPI Gateway</title>
+    <title>The Muscle Bar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/lib/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="~/theme/vendor/datatables/dataTables.bs4-custom.css" />
     <link href="~/theme/vendor/datatables/buttons.bs.css" rel="stylesheet" />
     <link href="/css/style.css" rel="stylesheet">
-    @*<link href="~/css/custom.css" rel="stylesheet" />*@
 </head>
 <body>
     <div class="page">
@@ -46,7 +45,7 @@
                                 <img src="/images/logo.png" />
                             </a>-->
                             <a class="header-mobile" href="/dashboard">
-                                <img src="/images/logo.png" style="width: 168px;">
+                                <img src="/images/logo.png" style="width: 50px;">
                             </a>
                         </div>
                         <div class="ml-2">
@@ -108,27 +107,16 @@
                                     <li class="nav-item ">
                                         <a class="nav-link waves-effect waves-light" href="/User/Index/">Users</a>
                                     </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link waves-effect waves-light" href="/Package/Index">Plan</a>
-                                    </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Report
                                         </a>
                                         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item waves-effect waves-light" href="/Report/Transaction">TransactionReport</a>
-                                            <a class="dropdown-item waves-effect waves-light" href="/Report/Index">APILog</a>
-                                            <a class="dropdown-item waves-effect waves-light" href="/Report/Error">ErrorLog</a>
-                                            <a class="dropdown-item waves-effect waves-light" href="/Report/CallBackReport">Callback Hit</a>
+                                            <a class="dropdown-item waves-effect waves-light" href="/Report/ledger">ledger</a>
+                                            <a class="dropdown-item waves-effect waves-light" href="/Report/Subscriptions">Subscriptions</a>
                                         </div>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="/PaymentGateway/Index">PaymentGateway</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="/home/apidoc">API Docs</a>
-                                    </li>
-                                    <li class="nav-item dropdown">
+                                    @*<li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Jobs
                                         </a>
@@ -138,22 +126,7 @@
                                             <a class="dropdown-item waves-effect waves-light" href="javascript:s.pauseTask()">Paused</a>
                                             <a class="dropdown-item waves-effect waves-light" href="javascript:s.resumeTask()">Resume</a>
                                         </div>
-                                    </li>
-                                }
-                                @if (role.Equals("apiuser", StringComparison.OrdinalIgnoreCase) || role.Equals("2"))
-                                {
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="/dashboard">Dashboad</a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link waves-effect waves-light" href="/Package/Packages">Plan</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="/Merchant/index">Merchant Profile</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link waves-effect waves-light" href="/home/apidoc" target="_blank">API Docs</a>
-                                    </li>
+                                    </li>*@
                                 }
                             </ul>
                         </div>

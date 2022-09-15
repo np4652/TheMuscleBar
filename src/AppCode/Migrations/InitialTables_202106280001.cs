@@ -104,6 +104,25 @@ namespace TheMuscleBar.AppCode.Migrations
                .WithColumn("ErrorFrom").AsString(50).NotNullable()
                .WithColumn("ErrorNumber").AsString(10).NotNullable()
                .WithColumn("EntryOn").AsDateTime().NotNullable();
+
+            /* Ledger*/
+            Create.Table("Ledger")
+               .WithColumn("Id").AsInt64().Identity().NotNullable()
+               .WithColumn("UserId").AsInt64().NotNullable()
+               .WithColumn("TransactionType").AsFixedLengthString(1).NotNullable()
+               .WithColumn("Amount").AsDecimal().NotNullable()
+               .WithColumn("discount").AsDecimal().NotNullable()
+               .WithColumn("PaymentMode").AsInt16().NotNullable()
+               .WithColumn("EntryBy").AsInt64().NotNullable()
+               .WithColumn("EntryOn").AsDateTime().NotNullable();
+
+            /* Ledger*/
+            Create.Table("UserSubscription")
+               .WithColumn("Id").AsInt64().Identity().NotNullable()
+               .WithColumn("UserId").AsInt64().NotNullable()
+               .WithColumn("DateFrom").AsDateTime().NotNullable()
+               .WithColumn("DateTo").AsDateTime().NotNullable()
+               .WithColumn("LedgerId").AsInt64().NotNullable();
         }
     }
 }

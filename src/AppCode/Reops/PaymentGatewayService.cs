@@ -171,8 +171,5 @@ namespace TheMuscleBar.AppCode.Reops
             }
             return response;
         }
-
-        
-
     }
 }

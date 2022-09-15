@@ -16,10 +16,12 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>User Name</th>
                             <th>Mobile</th>
                             <th>EmailID</th>
-                            <th>Action</th>
+                            <th>Adhaar</th>
+                            <th>DOB</th>
+                            <th>IsActive</th>
+                            @*<th>Action</th>*@
                         </tr>
                     </thead>
                     <tbody>
@@ -41,17 +43,18 @@
                 });
             }).fail(xhr => Q.notify(-1, xhr.responseText));
         };
-        $('#btnAddUser').click(() => {
-            editUser()
-            //$.post('/Account/_Register').done(result => {
-            //    Q.alert({
-            //        body: result
-            //    });
-            //}).fail(xhr => Q.notify(-1, xhr.responseText));
-        });
-        $('.btnaddUser').click(() => dialog.user(-1));
-        var loadData = () => {
+        $('#btnAddUser').click(() => editUser());
+        const loadData = () => {
             $.post('/User/UsersList').done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
+        }
+
+        const collectFeeForm = (userId) => {
+            $.post('/User/CollectForm', { userId }).done(result => {
+                Q.alert({
+                    title: 'Collect Fee',
+                    body: result
+                });
+            }).fail(xhr => Q.notify(-1, xhr.responseText));
         }
     </script>
 }

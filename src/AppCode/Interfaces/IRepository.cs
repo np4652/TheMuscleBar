@@ -1,6 +1,7 @@
 ﻿using TheMuscleBar.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TheMuscleBar.AppCode.Reops.Entities;
 
 namespace TheMuscleBar.AppCode.Interfaces
 {

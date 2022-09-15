@@ -1,10 +1,8 @@
-﻿
-namespace TheMuscleBar.AppCode.Enums
+﻿namespace TheMuscleBar.AppCode.Enums
 {
     public enum TransactionType
     {
-        cr = 0,
-        dr = 1,
-        Journal = 2
+        cr = 'c',
+        dr = 'd',
     }
 }

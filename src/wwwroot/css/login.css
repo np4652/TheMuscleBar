@@ -9,7 +9,8 @@
 }
 
     .brand-wrapper .logo {
-        height: 37px;
+        height: 150px;
+        object-fit:cover;
     }
 
 .login-card {
@@ -29,7 +30,7 @@
 }
 
 .login-card .card-body {
-    padding: 85px 60px 60px;
+    padding: 25px 60px 60px;
 }
 
 @media (max-width: 422px) {

@@ -1,0 +1,148 @@
+﻿@using TheMuscleBar.AppCode.Enums;
+@model TheMuscleBar.Models.ViewModel.CollectFeeViewModel
+<link rel="stylesheet" href="/css/profile.css">
+<form action="/user/CollectFee" method="post">
+    <div class="card">
+        <div class="bd66Box clearfix">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bd66LeftInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">NAME</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+                                    <input type="hidden" value="@Model.UserId" name="@nameof(Model.UserId)" />
+                                    <label class="c-kDbNPa fw400 fs16" id="authorName">@Model.Name</label>
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 bd66RightInp">
+                    <div class="bd66RightInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">MOBILE NUMBER</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+
+                                    <label class="c-kDbNPa  fw400 fs16" id="authorMobile">@Model.PhoneNumber</label>
+
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bd66InpContainer">
+                <div class="col-md-6 bd66LeftInp">
+                    <div class="bd66LeftInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">Membership Type</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+                                    <select class="c-kDbNPa  fw400 fs16" name="@nameof(Model.MembershipType)">
+                                        <option value="@MembershipType.Monthly">@MembershipType.Monthly</option>
+                                        <option value="@MembershipType.Quarterly">@MembershipType.Quarterly</option>
+                                        <option value="@MembershipType.HalfYearly">@MembershipType.HalfYearly</option>
+                                        <option value="@MembershipType.Yearly">@MembershipType.Yearly</option>
+                                    </select>
+                                    <span class="c-lkBNdM"> </span>
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 bd66RightInp">
+                    <div class="bd66RightInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">Amount</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+                                    <input class="c-kDbNPa  fw400 fs16" id="authorMerchantId" value="@Model.Amount" name="@nameof(Model.Amount)" />
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bd66InpContainer">
+                <div class="col-md-6 bd66LeftInp">
+                    <div class="bd66LeftInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">Discount</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+                                    <input class="c-kDbNPa  fw400 fs16" id="authorEmail" value="@Model.Discount" name="@nameof(Model.Discount)" />
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 bd66RightInp">
+                    <div class="bd66RightInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">Mode</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+                                    <select class="c-kDbNPa  fw400 fs16" name="@nameof(Model.PaymentMode)">
+                                        <option value="@PaymentMode.Cash">@PaymentMode.Cash</option>
+                                        <option value="@PaymentMode.UPI">@PaymentMode.UPI</option>
+                                        <option value="@PaymentMode.Bank">@PaymentMode.Bank</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bd66InpContainer">
+                <div class="col-md-6 bd66LeftInp">
+                    <div class="bd66LeftInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">From</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+                                    <input class="c-kDbNPa  fw400 fs16" id="fromDate" name="@nameof(Model.FromDate)" />
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 bd66RightInp">
+                    <div class="bd66RightInp">
+                        <div>
+                            <div class="c-fiiZaJ fs14 fw400">To</div>
+                            <div class="c-jCqGRU">
+                                <div class="c-UazGY">
+                                    <input class="c-kDbNPa  fw400 fs16" id="toDate" name="@nameof(Model.ToDate)" />
+                                </div>
+                            </div>
+                            <div class="c-loqsEf c-loqsEf-cKbjjX-error-false fs14 fw400"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bd66InpContainer">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-dark btn-block">Collect</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form> 
+
+<script>
+    $('#fromDate,#toDate').datepicker({
+        dateFormat: 'dd M yy'
+    });
+    //$('#toDate').datepicker({
+    //    dateFormat: 'dd M yy'
+    //});
+</script>

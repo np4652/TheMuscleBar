@@ -129,24 +129,3 @@
         dateFormat: 'dd M yy'
     });
 </script>
-@section Scripts{
-    <script>
-
-        function getUserss() {
-            Q.preloader.load();
-            $.ajax({
-                type: 'post',
-                url: '/User/UsersList',
-                success: function (data) {
-                    $('tbody').html(data);
-                },
-                error: function (data) {
-                    console.log('An error occurred.');
-                    console.log(data);
-                    Q.notify(-1, 'An error occurred.');
-                },
-            });
-            Q.preloader.remove();
-        }
-    </script>
-}

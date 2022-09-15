@@ -7,6 +7,8 @@ using AutoMapper;
 using TheMuscleBar.AppCode.Extensions;
 using TheMuscleBar.AppCode.Data;
 using TheMuscleBar.AppCode.Enums;
+using TheMuscleBar.Models.ViewModel;
+using TheMuscleBar.AppCode.Reops.Entities;
 
 namespace TheMuscleBar.Controllers
 {
@@ -67,26 +69,25 @@ namespace TheMuscleBar.Controllers
             return Json(response);
         }
 
-        [HttpPost("GetSecurityCode")]
-        public async Task<IActionResult> SecurityCode()
-        {
-            var user = await _userManager.FindByIdAsync(User.GetLoggedInUserId<int>().ToString());
-            return Json(new {SecurityCode = user.ConcurrencyStamp, MerchantId = ""});
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> ChangeAction(int id)
-        {
-            var response = await _users.ChangeAction(id);
-            return Json(response);
-           
-        }
-
         public async Task<IActionResult> Profile()
         {
             ApplicationUser user = await _userManager.FindByIdAsync(User.GetLoggedInUserId<int>().ToString());
             return View(user);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CollectForm(int userId)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(userId.ToString());
+            var res = _mapper.Map<CollectFeeViewModel>(user);
+            return PartialView(res);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CollectFee(CollectFee collectFee)
+        {
+            var res = await _users.CollectFee(collectFee);
+            return Json(res);
+        }
     }
 }
