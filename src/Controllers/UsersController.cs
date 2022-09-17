@@ -9,6 +9,8 @@ using TheMuscleBar.AppCode.Data;
 using TheMuscleBar.AppCode.Enums;
 using TheMuscleBar.Models.ViewModel;
 using TheMuscleBar.AppCode.Reops.Entities;
+using TheMuscleBar.AppCode.CustomAttributes;
+using System;
 
 namespace TheMuscleBar.Controllers
 {
@@ -30,6 +32,13 @@ namespace TheMuscleBar.Controllers
         {
             return View();
         }
+
+        [Route("/dashboard")]
+        public async Task<IActionResult> Dashboard()
+        {
+            return View();
+        }
+
 
         [Authorize(Roles = "1")]
         [HttpPost]
@@ -80,12 +89,16 @@ namespace TheMuscleBar.Controllers
         {
             ApplicationUser user = await _userManager.FindByIdAsync(userId.ToString());
             var res = _mapper.Map<CollectFeeViewModel>(user);
+            res.UserId = user.Id;
             return PartialView(res);
         }
 
         [HttpPost]
+        [ValidateAjax]
         public async Task<IActionResult> CollectFee(CollectFee collectFee)
         {
+            collectFee.EntryBy = User.GetLoggedInUserId<int>();
+            collectFee.TransactionType = TransactionType.cr;
             var res = await _users.CollectFee(collectFee);
             return Json(res);
         }

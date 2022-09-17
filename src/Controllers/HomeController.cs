@@ -51,37 +51,7 @@ namespace TheMuscleBar.Controllers
             _upiSetting = upiSetting;
         }
 
-        [Route("/dashboard")]
-        public async Task<IActionResult> Index()
-        {
-            string role = User.GetLoggedInUserRoles() ?? string.Empty;
-            string path = "_AdminDashboard";
-            if (role.Equals("apiuser", StringComparison.OrdinalIgnoreCase) || role.Equals("2"))
-            {
-                path = "_ApiDashboard";
-                if (!await _upiSetting.IsAnyConfigurationExists(User.GetLoggedInUserId<int>()))
-                {
-                    path = "~/views/Merchant/Index.cshtml";
-                }
-            }
-            return View(path);
-        }
-        public IActionResult APIDoc()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> RecentActivity()
-        {
-            var response = await _reportService.GetTransactionReport(new TransactionReportRequest
-            {
-                UserId = User.GetLoggedInUserId<int>(),
-                Top = 10
-            });
-            var entity = response;
-            return PartialView(entity ?? new List<TransactionReport>());
-        }
-
+        
 
         public IActionResult Privacy()
         {
