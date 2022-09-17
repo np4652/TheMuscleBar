@@ -14,15 +14,9 @@ using Microsoft.Extensions.DependencyInjection;
 using NLog;
 using System.Reflection;
 using System.Collections.Generic;
-using TheMuscleBar.AppCode.Interfaces;
 using TheMuscleBar.AppCode.PaymentGateway;
-using ApiRequestUtility;
-using TheMuscleBar.AppCode.PhonePay;
-using LinqToDB.Common;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using System.IO;
-using System;
 
 namespace TheMuscleBar.AppCode.Extensions
 {
@@ -46,16 +40,15 @@ namespace TheMuscleBar.AppCode.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILog, LogNLog>();
             services.AddScoped<IRepository<EmailConfig>, EmailConfigRepo>();
-            services.AddScoped<IPackageService, PackageService>();
+     
             services.AddScoped<IReportService,Reops. ReportService>();
             //PackageService
             services.AddScoped<IPaymentGatewayService, PaymentGateway.PaymentGatewayService>();
             services.AddScoped<IPaymentGateway, Reops.PaymentGatewayService>();
            
-            services.AddScoped<ITransactionService, TransactionService>();
-            services.AddScoped<IPhonePayService, PhonePayService>();
+     
             services.AddScoped<IAPILogin, APILogin>();
-            services.AddScoped<IUPISettingService, UPISettingService>();
+     
             services.AddSingleton<ITokenService, TokenService>();
             services.AddScoped<Database>();
             services.AddAutoMapper(typeof(Startup));

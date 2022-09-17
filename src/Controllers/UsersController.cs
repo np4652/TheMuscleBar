@@ -10,7 +10,7 @@ using TheMuscleBar.AppCode.Enums;
 using TheMuscleBar.Models.ViewModel;
 using TheMuscleBar.AppCode.Reops.Entities;
 using TheMuscleBar.AppCode.CustomAttributes;
-using System;
+using System.Linq;
 
 namespace TheMuscleBar.Controllers
 {
@@ -42,10 +42,11 @@ namespace TheMuscleBar.Controllers
 
         [Authorize(Roles = "1")]
         [HttpPost]
-        public async Task<IActionResult> UsersList(Role role=Role.Customer)
+        public async Task<IActionResult> UsersList(Role role = Role.Customer)
         {
             int loginId = User.GetLoggedInUserId<int>();
             var users = await _users.GetAllAsync(new ApplicationUser { Role = role.ToString() }, loginId);
+            users = users.Where(x => x.Id != loginId);
             return PartialView("~/Views/Account/PartialView/_UsersList.cshtml", users);
         }
 

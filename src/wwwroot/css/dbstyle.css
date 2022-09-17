@@ -46,21 +46,6 @@ body {
     border-radius: 40px;
 }
 
-.header .form-inline .btn {
-    border-radius: 0;
-    padding: 3px 0 2px 0;
-    border: 2px solid transparent;
-    box-shadow: none;
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px;
-    background: transparent;
-    color: #0a5edb !important;
-    margin-right: -56px;
-    font-size: 11px;
-    position: absolute;
-    top: 5px;
-    left: 0;
-}
 
 .btn:not(:disabled):not(.disabled) {
     cursor: pointer;
@@ -188,6 +173,9 @@ body {
     background-color: #2262C6 !important;
 }
 
+.black {
+    background-color: #343a40!important;
+}
 .radius-bottom {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;

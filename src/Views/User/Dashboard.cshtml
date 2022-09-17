@@ -198,27 +198,7 @@
     </div>
 </div>
 
-<div class="row mb-2">
-    <div class="col-md-5">
-        <div class="card overflow-hidden mt-4">
-            <div class="card-header">
-                <div class="col-6"> <h3 class="float-left h3">Status Report</h3></div>
-                <div class="col-6 text-right">
-                    <div class="btn-group">
-                        <button type="button" onclick="GetPieChartData(1)" class="btn btn-primary active btn-sm btnSplitRequestType" data-value="1">By Count</button>
-                        <button type="button" onclick="GetPieChartData(2)" class="btn btn-primary btn-sm btnSplitRequestType" data-value="2">By Amount</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body p-0">
-                <canvas class="" id="myPieChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-7">
-        <div id="recentActivity"></div>
-    </div>
-</div>
+
 
 
 @section Scripts{
@@ -297,16 +277,6 @@
     </script>
     <script>
 
-        $(document).ready(function () {
-            recentActivity();
-        })
-        var recentActivity = function () {
-            $.post('/Home/RecentActivity').done(function (result) {
-                $('#recentActivity').html(result);
-            }).fail(function (xhr) {
-                alert('something went wrong');
-            })
-        };
         am5.ready(async function () {
             // Create root element
             // https://www.amcharts.com/docs/v5/getting-started/#Root_element

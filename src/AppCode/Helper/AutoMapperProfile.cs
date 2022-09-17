@@ -15,7 +15,6 @@ namespace TheMuscleBar.AppCode.Helper
             CreateMap<ApplicationUser, UserUpdateRequest>();
             CreateMap<ApplicationUser, Register>();
             CreateMap<ApplicationUserProcModel, ApplicationUser>().ReverseMap();            
-            CreateMap<InitiateTransactionRequest, TransactionRequest>();
             CreateMap<PaymentGatewayModel, StatusCheckRequest>().ReverseMap();
         }
     }

@@ -75,17 +75,18 @@ namespace TheMuscleBar.AppCode.Reops
             var res = new Response<string>();
             try
             {
-                res = await _dapper.GetAsync<Response<string>>("proc_CollectFee", new
-                {
-                    collectFee.UserId,
-                    TransactionType = (char)collectFee.TransactionType,
-                    collectFee.PaymentMode,
-                    collectFee.FromDate,
-                    collectFee.ToDate,
-                    collectFee.Amount,
-                    collectFee.Discount,
-                    collectFee.EntryBy
-                }, CommandType.StoredProcedure);
+                res = await _dapper.GetAsync<Response<string>>("proc_CollectFee", collectFee, CommandType.StoredProcedure);
+                //new
+                //{
+                //    collectFee.UserId,
+                //    TransactionType = collectFee.TransactionType,
+                //    collectFee.PaymentMode,
+                //    collectFee.FromDate,
+                //    collectFee.ToDate,
+                //    collectFee.Amount,
+                //    collectFee.Discount,
+                //    collectFee.EntryBy
+                //}
             }
             catch (Exception ex)
             {

@@ -1,0 +1,32 @@
+﻿<div class="card mt-2">
+    <div class="card-body">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="bg-mustered text-white">
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Discount</th>
+                            <th>Mode</th>
+                            <th>PaymentOn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+<script>
+    const loadData = () => {
+        $.post('/Report/_ledger').done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
+    }
+    loadData();
+</script>
+    
+}

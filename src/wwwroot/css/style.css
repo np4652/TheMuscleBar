@@ -142,7 +142,7 @@
     border-bottom-left-radius: 3px;
     border-top-left-radius: 3px;
     background: transparent;
-    color: #0a5edb!important;
+    color: #ffb400!important;
     margin-right: -56px;
     font-size: 11px;
     position: absolute;
@@ -550,3 +550,15 @@ select {
     -webkit-transition: all .3s;
     transition: all .3s;
 }
+
+.black {
+    background-color: #343a40 !important;
+}
+
+.bg-mustered {
+    background-color: #FFB400!important;
+}
+
+    .bg-mustered tr th {
+        border-color: #FFB400 !important;
+    }

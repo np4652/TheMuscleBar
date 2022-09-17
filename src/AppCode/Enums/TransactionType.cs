@@ -2,7 +2,7 @@
 {
     public enum TransactionType
     {
-        cr = 'c',
-        dr = 'd',
+        cr = 1,
+        dr = 2,
     }
 }
