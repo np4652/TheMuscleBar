@@ -80,6 +80,8 @@ namespace TheMuscleBar.Controllers
                 StatusCode = ResponseStatus.warning,
                 ResponseText = "Registration Failed"
             };
+            model.Password = string.IsNullOrEmpty(model.Password) ? "Welcome123" : model.Password;
+            model.ConfirmPassword = string.IsNullOrEmpty(model.ConfirmPassword) ? "Welcome123" : model.ConfirmPassword;
             if (ModelState.IsValid)
             {
                 var user = _mapper.Map<ApplicationUser>(model);
@@ -236,7 +238,7 @@ namespace TheMuscleBar.Controllers
             BackgroundJob.Enqueue(() => sendMail(setting));
             response.StatusCode = ResponseStatus.Success;
             response.ResponseText = " The link has been sent, please check your email to reset your password.";
-Finish:
+        Finish:
             return Json(response);
         }
 
@@ -321,6 +323,6 @@ Finish:
             var users = await _users.GetAllAsync(new ApplicationUser { Id = id, Role = role });
             return Json(users.Select(x => new { x.Id, x.Email, x.Name }).ToList());
         }
-        
+
     }
 }

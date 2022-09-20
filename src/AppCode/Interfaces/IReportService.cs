@@ -10,6 +10,7 @@ namespace TheMuscleBar.AppCode.Interfaces
         Task<IEnumerable<ErrorModel>> GetErrorlog();
         Task<IEnumerable<Legder>> GetLedger();
         Task<IEnumerable<SubscripitionReport>> GetSubscripitionReports();
+        Task<Invoice> GetInvoice(int tid);
     }   
 }
 

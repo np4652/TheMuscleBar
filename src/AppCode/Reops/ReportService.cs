@@ -24,8 +24,8 @@ namespace TheMuscleBar.AppCode.Reops
             _logger = logger;
         }
 
-        
-        
+
+
         public async Task<IEnumerable<ErrorModel>> GetErrorlog()
         {
             string sqlQuery = @"Select * from NLogs (nolock)order by Id desc";
@@ -45,6 +45,13 @@ namespace TheMuscleBar.AppCode.Reops
             string sqlQuery = @"Select u.[Name] UserName,u.PhoneNumber, us.UserId,us.LedgerId,Convert(varchar,us.DateFrom,106) DateFrom,Convert(varchar,us.DateTo,106) DateTo  from UserSubscription us(nolock) inner join users u(nolock) on u.Id = us.UserId";
             var res = await _dapper.GetAllAsync<SubscripitionReport>(sqlQuery, null, CommandType.Text);
             return res ?? new List<SubscripitionReport>();
+        }
+
+        public async Task<Invoice> GetInvoice(int tid)
+        {
+            string sqlQuery = @"Select 'TID' + RIGHT('0000000' + CAST(l.Id AS VARCHAR(7)), 7) TransactionId,u.[Name] UserName,u.PhoneNumber,l.TransactionType,l.Amount,l.discount,l.PaymentMode,Convert(varchar,l.EntryOn,106) EntryOn from Ledger l(nolock) inner join Users u(nolock) on u.Id = l.UserId where l.Id=@tid order by l.Id desc";
+            var res = await _dapper.GetAsync<Invoice>(sqlQuery, new { tid }, CommandType.Text);
+            return res ?? new Invoice();
         }
     }
 }

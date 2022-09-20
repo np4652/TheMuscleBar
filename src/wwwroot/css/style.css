@@ -4,12 +4,13 @@
     --s-bright-rgb: 11,12,15;
     --s-card-bg: #fff;
     --s-card-border: #2262C6;
-    --s--card-header-bg:#2262C6;
+    --s--card-header-bg: #585c60;
     --s-card-shadow: 0 2px 4px 0 rgba(53, 65, 76, .03);
     --s-card-title: #005fb1;
     --s-modal-shadow: 0 0 6px 3px rgba(0, 0, 0, .1);
     --bs-body-bg: #f4f8fb;
     --bs-body-color: #000;
+    --s--theme-bgColor-2: #e6b133;
 }
 
 .ui-dialog-titlebar span.ui-dialog-title {
@@ -562,3 +563,7 @@ select {
     .bg-mustered tr th {
         border-color: #FFB400 !important;
     }
+
+.theme-bg-2 {
+    background: var(--s--theme-bgColor-2)!important;
+}

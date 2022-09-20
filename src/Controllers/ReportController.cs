@@ -58,5 +58,13 @@ namespace TheMuscleBar.Controllers
             var entity = response;
             return PartialView(entity ?? new List<ErrorModel>());
         }
+
+        [HttpGet("/Invoice/{tid}")]
+        public async Task<IActionResult> Invoice(int tid)
+        {
+            var response = await _reportService.GetInvoice(tid);
+            var entity = response;
+            return View(entity ?? new Invoice());
+        }
     }
 }

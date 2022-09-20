@@ -36,14 +36,8 @@ namespace TheMuscleBar.Models
         public MembershipType MembershipType { get; set; }
     }
     public class RegisterViewModel: Register
-    {
-        [Required]
-        [DataType(DataType.Password)]
+    {       
         public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Password and compare password do not match..")]
         public string ConfirmPassword { get; set; }
         public IFormFile ProfilePic { get; set; }
     }
