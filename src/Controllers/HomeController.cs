@@ -16,8 +16,7 @@ using System.Diagnostics;
 
 namespace TheMuscleBar.Controllers
 {
-    [Authorize]
-    [ApiExplorerSettings(IgnoreApi = true)]
+ 
     public class HomeController : Controller
     {
         private IUserService _userService;
@@ -42,8 +41,11 @@ namespace TheMuscleBar.Controllers
                 _user = (ApplicationUser)_httpContext?.HttpContext.Items["User"];
             }
         }
-
-        
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
