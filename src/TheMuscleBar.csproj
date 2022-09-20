@@ -242,6 +242,29 @@
     <None Include="wwwroot\theme\vendor\summernote\summernote-bs4.js" />
     <None Include="wwwroot\theme\vendor\wizard\jquery.steps.custom.js" />
     <None Include="wwwroot\theme\vendor\wizard\jquery.steps.min.js" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-brands-400.svg" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-brands-400.woff2" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-duotone-900.svg" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-duotone-900.woff2" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-light-300.svg" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-light-300.woff2" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-regular-400.svg" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-regular-400.woff2" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-solid-900.svg" />
+    <None Include="wwwroot\website\fonts\fontawesome\fa-solid-900.woff2" />
+    <None Include="wwwroot\website\js\ajax-mail.js" />
+    <None Include="wwwroot\website\js\bootstrap.min.js" />
+    <None Include="wwwroot\website\js\comparison.js" />
+    <None Include="wwwroot\website\js\imagesloaded.pkgd.min.js" />
+    <None Include="wwwroot\website\js\isotope.pkgd.min.js" />
+    <None Include="wwwroot\website\js\jquery-3.5.0.min.js" />
+    <None Include="wwwroot\website\js\jquery.counterup.min.js" />
+    <None Include="wwwroot\website\js\jquery.event.move.js" />
+    <None Include="wwwroot\website\js\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\website\js\main.js" />
+    <None Include="wwwroot\website\js\slick.min.js" />
+    <None Include="wwwroot\website\js\vscustom-carousel.min.js" />
+    <None Include="wwwroot\website\js\wow.min.js" />
   </ItemGroup>
 
   <ItemGroup>
