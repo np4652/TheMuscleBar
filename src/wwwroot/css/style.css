@@ -567,3 +567,11 @@ select {
 .theme-bg-2 {
     background: var(--s--theme-bgColor-2)!important;
 }
+.page-item.active .page-link {
+    background-color: #ffb400!important;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #ffb400!important;
+    background-color: #ffb400!important;
+}

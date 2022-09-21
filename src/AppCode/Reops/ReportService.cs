@@ -53,5 +53,11 @@ namespace TheMuscleBar.AppCode.Reops
             var res = await _dapper.GetAsync<Invoice>(sqlQuery, new { tid }, CommandType.Text);
             return res ?? new Invoice();
         }
+
+        public async Task<DashboardSummery> GetDashboardSummery()
+        {
+            var res = await _dapper.GetAsync<DashboardSummery>("Proc_GetDashboardSummery", new { }, commandType: CommandType.StoredProcedure);
+            return res ?? new DashboardSummery();
+        }
     }
 }
