@@ -59,12 +59,18 @@ namespace TheMuscleBar.Controllers
             return PartialView(entity ?? new List<ErrorModel>());
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetDashboardSummery()
+        {
+            var response = await _reportService.GetDashboardSummery();            
+            return Json(response ?? new DashboardSummery());
+
+        }
         [HttpGet("/Invoice/{tid}")]
         public async Task<IActionResult> Invoice(int tid)
         {
             var response = await _reportService.GetInvoice(tid);
-            var entity = response;
-            return View(entity ?? new Invoice());
+            return View(response ?? new Invoice());
         }
     }
 }

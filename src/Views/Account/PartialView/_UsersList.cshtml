@@ -9,29 +9,60 @@
 
     @foreach (var item in Model)
     {
-<tr data-user-id="@item.Id">
-    <td>@i</td>
-    <td>
-        <img class="img-thumbnail rounded-circle mr-2" style="width:50px;height:50px" src="~/images/Profile/profile_@(item.Id).png" />
-        <span class="btn-link cursor-pointer btnaddUser">
-            @Html.DisplayFor(modelItem => item.Name)
-        </span>
-        <span class="d-block btn-link pull-right btnCollectFee">Collect Fee</span>
-    </td>
-    @*<td>@Html.DisplayFor(modelItem => item.UserName)</td>*@
-    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
-    <td>@Html.DisplayFor(modelItem => item.Email)</td>
-    <td>@Html.DisplayFor(modelItem => item.AdharNo)</td>
-    <td>@Html.DisplayFor(modelItem => item.DOB)</td>
-    <td>
-        <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input IsActive" id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
-            <label class="custom-control-label" for="IsActive_@i"></label>
-        </div>
-    </td>
-</tr>
+        <tr data-user-id="@item.Id">
+            <td>@i</td>
+            <td>
+                <img class="img-thumbnail rounded-circle mr-2" style="width:50px;height:50px" src="~/images/Profile/profile_@(item.Id).png" />
+                <a href="javascript:void(0)" class="btn-link btnaddUser">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
+                <a href="javascript:void(0)" class="d-block btn-link pull-right btnCollectFee">Collect Fee</a>
+            </td>
+            @*<td>@Html.DisplayFor(modelItem => item.UserName)</td>*@
+            <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>@Html.DisplayFor(modelItem => item.AdharNo)</td>
+            <td>@Html.DisplayFor(modelItem => item.DOB)</td>
+            <td>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input IsActive" id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
+                    <label class="custom-control-label" for="IsActive_@i"></label>
+                </div>
+            </td>
+        </tr>
         i++;
     }
+        <script>
+        $('table').DataTable({    
+            initComplete: function () {
+                $("div.dataTables_length").html($('#btnAddUser'));
+            }
+        });
+        $('.btnaddUser').click(e => {
+            let userId = $(e.currentTarget).closest('tr').data().userId;
+            editUser(userId);
+        });
+
+        $('.IsActive').unbind().click(e => {
+            let element = $(e.currentTarget).closest('tr');
+            let param = {
+                Id: element.data().userId
+            };
+            $.post('/User/ChangeAction', param)
+                .done(result => {
+                    Q.notify(result.statusCode, result.responseText);
+                }).fail(xhr => {
+                    an.title = 'Oops!!';
+                    an.content = xhr.responseText;
+                    an.alert(-1);
+                }).always(() => { });
+        });
+
+        $('.btnCollectFee').click(e => {
+            let userId = $(e.currentTarget).closest('tr').data().userId;
+            collectFeeForm(userId)
+        })
+    </script>
 }
 else
 {
@@ -39,30 +70,3 @@ else
         <td colspan="5">No Records Found</td>
     </tr>
 }
-
-<script>
-    $('.btnaddUser').click(e => {
-        let userId = $(e.currentTarget).closest('tr').data().userId;
-        editUser(userId);
-    });
-
-    $('.IsActive').unbind().click(e => {
-        let element = $(e.currentTarget).closest('tr');
-        let param = {
-            Id: element.data().userId
-        };
-        $.post('/User/ChangeAction', param)
-            .done(result => {
-                Q.notify(result.statusCode, result.responseText);
-            }).fail(xhr => {
-                an.title = 'Oops!!';
-                an.content = xhr.responseText;
-                an.alert(-1);
-            }).always(() => { });
-    });
-
-    $('.btnCollectFee').click(e => {
-        let userId = $(e.currentTarget).closest('tr').data().userId;
-        collectFeeForm(userId)
-    })
-</script>

@@ -50,39 +50,40 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3  col-sm-mb-2">
-        <div class="card overflow-hidden">
-            <div class="card-body p-0 text-center">
-                <div class="main-va users-count">
-                    <div class="online-users">
-                        <div class="col-nw">
-                            <h3 class="fw-semibold" id="Hits">0</h3>
-                            <p class="fs-13 mb-0 text-muted">Count</p>
+    @*<div class="col-lg-6 col-sm-12 col-md-6 col-xl-3  col-sm-mb-2">
+            <div class="card overflow-hidden">
+                <div class="card-body p-0 text-center">
+                    <div class="main-va users-count">
+                        <div class="online-users">
+                            <div class="col-nw">
+                                <h3 class="fw-semibold" id="totalSubscription">0</h3>
+                                <p class="fs-13 mb-0 text-muted">Count</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="offline-users">
-                        <div class="top-icn dash">
-                            <h3 class="fw-semibold" id="HitsAmnt">0</h3>
-                            <p class="fs-13 mb-0 text-muted"> Amount    </p>
+                        <div class="offline-users">
+                            <div class="top-icn dash">
+                                <h3 class="fw-semibold" id="HitsAmnt">0</h3>
+                                <p class="fs-13 mb-0 text-muted"> Amount    </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer bg-success">
-                <div class="row">
-                    <div class="col">
-                        <p class="text-white mb-0 mt-0 fs-fot">
-                            Total Subscription
-                        </p>
+                <div class="card-footer bg-success">
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-white mb-0 mt-0 fs-fot">
+                                Total Subscription
+                            </p>
+                        </div>
                     </div>
                 </div>
+                <div class="counter-icon dash ms-auto box-shadow-secondary">
+                    <i class="fa fa-cart-plus"></i>
+                </div>
             </div>
-            <div class="counter-icon dash ms-auto box-shadow-secondary">
-                <i class="fa fa-cart-plus"></i>
-            </div>
-        </div>
-    </div>
+        </div>*@
+
     <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3 col-sm-mb-2">
         <div class="card overflow-hidden">
             <div class="card-body p-0 text-center">
@@ -103,7 +104,7 @@
 
                 </div>
             </div>
-            <div class="card-footer bg-danger">
+            <div class="card-footer bg-success">
                 <div class="row">
                     <div class="col">
                         <p class="text-white mb-0 mt-0 fs-fot">
@@ -137,7 +138,7 @@
 
                 </div>
             </div>
-            <div class="card-footer bg-warningg">
+            <div class="card-footer bg-danger">
                 <div class="row">
                     <div class="col">
                         <p class="text-white mb-0 mt-0 fs-fot">
@@ -145,6 +146,39 @@
                                 <i class="fa fa-long-arrow-down"></i>
                                 12%</span>-->
                             Expired Subscription
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="counter-icon dash ms-auto box-shadow-secondary">
+                <i class="fa fa-cart-plus"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3  col-sm-mb-2">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0 text-center">
+                <div class="main-va users-count">
+                    <div class="online-users">
+                        <div class="col-nw">
+                            <h3 class="fw-semibold" id="aboutToExpired">0</h3>
+                            <p class="fs-13 mb-0 text-muted">Count</p>
+                        </div>
+                    </div>
+
+                    <div class="offline-users">
+                        <div class="top-icn dash">
+                            <h3 class="fw-semibold" id="HitsAmnt">0</h3>
+                            <p class="fs-13 mb-0 text-muted"> Amount    </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-warningg">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-white mb-0 mt-0 fs-fot">
+                            About To Expired
                         </p>
                     </div>
                 </div>
@@ -210,22 +244,14 @@
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <script>
         $(function () {
-            $.post('/AdminDashboardCount').done((result) => {
-                $('#Users').text(result.users);
-                $('#Hits').text(result.hits);
+            $.post('/Report/GetDashboardSummery').done((result) => {
+                console.log(result);
+                $('#Users').text(result.totalUser);
+                $('#totalSubscription').text(result.totalSubscription);
                 $('#ActiveSub').text(result.activeSubscription);
                 $('#ExpiredSub').text(result.expiredSubscription);
+                $('#aboutToExpired').text(result.aboutToExpired);
             });
-
-            $.post('/TotalAdminDashboardAmnt').done((result) => {
-                $('#UsersAmnt').text(result.usersAmount);
-                $('#HitsAmnt').text(result.hitsAmount);
-                $('#ActiveSubAmnt').text(result.activeSubscriptionAmnt);
-                $('#ExpiredSubAmnt').text(result.expiredSubscriptionAmnt);
-            });
-
-
-            GetPieChartData(1);
         })
     </script>
     <script id="Script1">

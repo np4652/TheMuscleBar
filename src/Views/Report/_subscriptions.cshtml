@@ -12,6 +12,30 @@
             <td>@item.PhoneNumber</td>
             <td>@item.DateFrom</td>
             <td>@item.DateTo</td>
+            <td>
+                @{
+                    var status = "";
+                    DateTime expiredOn = DateTime.Now;
+                    DateTime.TryParseExact(item.DateTo, "dd MMM yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out expiredOn);
+                    int dateDiff = (expiredOn - DateTime.Now).Days;
+                    if (dateDiff < 0)
+                    {
+                        <span class="badge badge-danger">Expired</span>
+                    }
+                    else if (dateDiff > 0 && dateDiff <= 7)
+                    {
+                        <span class="badge badge-warning">Warning</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-success">Active</span>
+                    }
+                }
+            </td>
         </tr>
     }
+    <script>
+        $('table').dataTable()
+    </script>
 }
+
