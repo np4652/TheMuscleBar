@@ -118,6 +118,7 @@ namespace TheMuscleBar.Controllers
             return View(model);
         }
 
+        [HttpGet("/Login")]
         public IActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
@@ -125,7 +126,7 @@ namespace TheMuscleBar.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("/login")]
         public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl)
         {
             if (!ModelState.IsValid)
