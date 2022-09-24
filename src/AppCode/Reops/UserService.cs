@@ -7,6 +7,7 @@ using TheMuscleBar.AppCode.DAL;
 using System.Data;
 using TheMuscleBar.AppCode.Enums;
 using TheMuscleBar.AppCode.Reops.Entities;
+using TheMuscleBar.Models.ViewModel;
 
 namespace TheMuscleBar.AppCode.Reops
 {
@@ -94,5 +95,26 @@ namespace TheMuscleBar.AppCode.Reops
             }
             return res;
         }
+
+
+        public async Task<IEnumerable<UnSubscribedUser>> GetSubscriptionExpired()
+        {
+            try
+            {
+                var res = await _dapper.GetAllAsync<UnSubscribedUser>("proc_proc_SubscriptionbyUser", null, CommandType.StoredProcedure);
+                return res ?? new List<UnSubscribedUser>();
+            }
+            catch (Exception ex)
+            {
+                return new List<UnSubscribedUser>();
+            }
+        }
+
+        public async Task<UserDetailsReturn> GetSubscriptionByuser(int userid)
+        {
+            var res = await _dapper.GetAsync<UserDetailsReturn>("proc_SubscriptionbyUser", new { UserID = userid }, CommandType.StoredProcedure);
+            return res ?? new UserDetailsReturn();
+        }
+
     }
 }
