@@ -11,6 +11,7 @@ namespace TheMuscleBar.AppCode.Helper
         {
             CreateMap<EmailConfig, EmailSettings>();
             CreateMap<ApplicationUser, RegisterViewModel>().ReverseMap();
+            CreateMap<RegisterAPIRequest, RegisterViewModel>().ReverseMap();
             CreateMap<ApplicationUser, CollectFeeViewModel>().ReverseMap();
             CreateMap<ApplicationUser, UserUpdateRequest>();
             CreateMap<ApplicationUser, Register>();

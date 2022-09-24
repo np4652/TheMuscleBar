@@ -32,9 +32,10 @@ namespace TheMuscleBar.Controllers.API
             _mapper = mapper;
             _userManager = userManager;
         }
-        [HttpGet(nameof(Register))]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        [HttpPost(nameof(Register))]
+        public async Task<IActionResult> Register(RegisterAPIRequest req)
         {
+            var model = _mapper.Map<RegisterViewModel>(req);
            
             Response<UserDetailsReturn> response = new Response<UserDetailsReturn>()
             {

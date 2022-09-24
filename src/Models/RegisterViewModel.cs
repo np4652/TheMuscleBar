@@ -41,4 +41,9 @@ namespace TheMuscleBar.Models
         public string ConfirmPassword { get; set; }
         public IFormFile ProfilePic { get; set; }
     }
+
+    public class RegisterAPIRequest : Register
+    {
+
+    }
 }
