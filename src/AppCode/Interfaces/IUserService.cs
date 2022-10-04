@@ -11,5 +11,6 @@ namespace TheMuscleBar.AppCode.Interfaces
         Task<Response<string>> CollectFee(CollectFee collectFee);
         Task<IEnumerable<UnSubscribedUser>> GetSubscriptionExpired();
         Task<UserDetailsReturn> GetSubscriptionByuser(int userid);
+        Task<Response> SaveApiLog(ApiModel req);
     }
 }

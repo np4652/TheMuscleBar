@@ -115,6 +115,14 @@ namespace TheMuscleBar.AppCode.Reops
             var res = await _dapper.GetAsync<UserDetailsReturn>("proc_SubscriptionbyUser", new { UserID = userid }, CommandType.StoredProcedure);
             return res ?? new UserDetailsReturn();
         }
-
+        public async Task<Response> SaveApiLog(ApiModel req)
+        {
+            var res = await _dapper.ExecuteAsync("proc_SaveApiLog", req, commandType: CommandType.StoredProcedure);
+            return new Response
+            {
+                StatusCode = res != -1 ? ResponseStatus.Success : ResponseStatus.Failed,
+                ResponseText = res != -1 ? ResponseStatus.Success.ToString() : ResponseStatus.Failed.ToString(),
+            };
+        }
     }
 }
