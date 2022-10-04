@@ -101,5 +101,30 @@ namespace TheMuscleBar.Controllers.API
             }
             return Ok(response);
         }
+        [HttpGet(nameof(syncattendance))]
+        public async Task<IActionResult> syncattendance(string  syncdata)
+        {
+            var req = new ApiModel()
+            {
+                Request = "syncattendance",
+                Response= "syncattendance",
+                Params= syncdata
+            };
+            var response = _users.SaveApiLog(req).Result;
+            return Ok(response);
+        }
+
+        [HttpGet(nameof(AddSubscription))]
+        public async Task<IActionResult> AddSubscription(string syncdata)
+        {
+            var req = new ApiModel()
+            {
+                Request = "syncattendance",
+                Response = "syncattendance",
+                Params = syncdata
+            };
+            var response = _users.SaveApiLog(req).Result;
+            return Ok(response);
+        }
     }
 }
