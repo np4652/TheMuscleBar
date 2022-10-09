@@ -71,23 +71,12 @@ namespace TheMuscleBar.AppCode.Reops
             throw new NotImplementedException();
         }
 
-        public async Task<Response<string>> CollectFee(CollectFee collectFee)
+        public async Task<CollectFeeResponse> CollectFee(CollectFee collectFee)
         {
-            var res = new Response<string>();
+            var res = new CollectFeeResponse();
             try
             {
-                res = await _dapper.GetAsync<Response<string>>("proc_CollectFee", collectFee, CommandType.StoredProcedure);
-                //new
-                //{
-                //    collectFee.UserId,
-                //    TransactionType = collectFee.TransactionType,
-                //    collectFee.PaymentMode,
-                //    collectFee.FromDate,
-                //    collectFee.ToDate,
-                //    collectFee.Amount,
-                //    collectFee.Discount,
-                //    collectFee.EntryBy
-                //}
+                res = await _dapper.GetAsync<CollectFeeResponse>("proc_CollectFee", collectFee, CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {

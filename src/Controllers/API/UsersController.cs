@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using TheMuscleBar.Models.ViewModel;
 using System.Collections.Generic;
 using TheMuscleBar.AppCode.Helper;
+using TheMuscleBar.AppCode.Reops.Entities;
 
 namespace TheMuscleBar.Controllers.API
 {
@@ -114,17 +115,13 @@ namespace TheMuscleBar.Controllers.API
             return Ok(response);
         }
 
-        [HttpGet(nameof(AddSubscription))]
-        public async Task<IActionResult> AddSubscription(string syncdata)
+        [HttpGet(nameof(CollectFee))]
+        public async Task<IActionResult> CollectFee(CollectFee collectFee)
         {
-            var req = new ApiModel()
-            {
-                Request = "syncattendance",
-                Response = "syncattendance",
-                Params = syncdata
-            };
-            var response = _users.SaveApiLog(req).Result;
-            return Ok(response);
+            collectFee.EntryBy = 1;
+            collectFee.TransactionType = TransactionType.cr;
+            var res = await _users.CollectFee(collectFee);
+            return Ok(res);
         }
     }
 }
