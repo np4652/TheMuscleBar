@@ -101,14 +101,14 @@ namespace TheMuscleBar.Controllers.API
             }
             return Ok(response);
         }
-        [HttpGet(nameof(syncattendance))]
-        public async Task<IActionResult> syncattendance(string  syncdata)
+        [HttpPost(nameof(syncattendance))]
+        public async Task<IActionResult> syncattendance(SyncData data)
         {
             var req = new ApiModel()
             {
                 Request = "syncattendance",
                 Response= "syncattendance",
-                Params= syncdata
+                Params= data.data
             };
             var response = _users.SaveApiLog(req).Result;
             return Ok(response);

@@ -14,4 +14,9 @@ namespace TheMuscleBar.Models.ViewModel
         public int UserId { get; set; }
         public string Name { get; set; }
     }
+    public class SyncData
+    {
+        public string data { get; set; }
+
+    }
 }
