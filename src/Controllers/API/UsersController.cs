@@ -115,7 +115,7 @@ namespace TheMuscleBar.Controllers.API
             return Ok(response);
         }
 
-        [HttpGet(nameof(CollectFee))]
+        [HttpPost(nameof(CollectFee))]
         public async Task<IActionResult> CollectFee(CollectFee collectFee)
         {
             collectFee.EntryBy = 1;
