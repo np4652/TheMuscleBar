@@ -17,13 +17,14 @@ namespace TheMuscleBar.AppCode.Reops.Entities
         public decimal Discount { get; set; }
         [Required(ErrorMessage = "From Date cannot be empty")]
         public string FromDate { get; set; }
-        [Required(ErrorMessage = "To Date cannot be empty")]
+        //[Required(ErrorMessage = "To Date cannot be empty")]
         public string ToDate { get; set; }
         public TransactionType TransactionType { get; set; }
         [Required(ErrorMessage = "Payment mode must be selected")]
         public PaymentMode PaymentMode { get; set; }
         public int EntryBy { get; set; }
         public string PhoneNumber { get; set; }
+        public MembershipType MembershipType { get; set; }
     }
 
     public class CollectFeeResponse: Response

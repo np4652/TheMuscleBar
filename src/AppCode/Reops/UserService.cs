@@ -76,7 +76,34 @@ namespace TheMuscleBar.AppCode.Reops
             var res = new CollectFeeResponse();
             try
             {
-                res = await _dapper.GetAsync<CollectFeeResponse>("proc_CollectFee", collectFee, CommandType.StoredProcedure);
+                DateTime fromDate = DateTime.Now;
+                DateTime.TryParseExact(collectFee.FromDate, "dd MMM yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out fromDate);
+                switch (collectFee.MembershipType)
+                {
+                    case MembershipType.Monthly:
+                        collectFee.ToDate = fromDate.AddMonths(1).ToString("dd MMM yyyy");
+                        break;
+                    case MembershipType.Quarterly:
+                        collectFee.ToDate = fromDate.AddMonths(3).ToString("dd MMM yyyy");
+                        break;
+                    case MembershipType.HalfYearly:
+                        collectFee.ToDate = fromDate.AddMonths(6).ToString("dd MMM yyyy");
+                        break;
+                    case MembershipType.Yearly:
+                        collectFee.ToDate = fromDate.AddMonths(12).ToString("dd MMM yyyy");
+                        break;
+                }
+                res = await _dapper.GetAsync<CollectFeeResponse>("proc_CollectFee", new
+                {
+                    collectFee.UserId,
+                    collectFee.Amount,
+                    collectFee.Discount,                    
+                    collectFee.FromDate,
+                    collectFee.ToDate,
+                    collectFee.PaymentMode,
+                    collectFee.EntryBy,
+                    collectFee.PhoneNumber
+                }, CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {

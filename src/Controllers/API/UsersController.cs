@@ -123,5 +123,21 @@ namespace TheMuscleBar.Controllers.API
             var res = await _users.CollectFee(collectFee);
             return Ok(res);
         }
+
+        [HttpPost(nameof(GetById))]
+        public async Task<IActionResult> GetById(int id)
+        {
+            try
+            {
+                var users = await _users.GetByIdAsync(id);
+                return Ok(User);
+            }
+            catch(Exception ex)
+            {
+                return Ok("Something went wrong");
+            }
+        }
+
+        
     }
 }
