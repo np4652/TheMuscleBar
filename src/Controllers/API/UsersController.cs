@@ -130,14 +130,12 @@ namespace TheMuscleBar.Controllers.API
             try
             {
                 var users = await _users.GetByIdAsync(id);
-                return Ok(User);
+                return Ok(users);
             }
             catch(Exception ex)
             {
                 return Ok("Something went wrong");
             }
         }
-
-        
     }
 }
