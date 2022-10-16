@@ -1,14 +1,15 @@
-﻿
-
-@model TheMuscleBar.AppCode.Reops.Entities.Invoice
+﻿@model TheMuscleBar.AppCode.Reops.Entities.Invoice
 
 @{
-	Layout=null;
+    Layout = null;
 }
 
+
 <center style="width: 100%;">
-	<div style="max-width: 600px; margin: 0 auto;" class="email-container">
-		<table style="
+    <div style="margin:0px auto">
+<button onclick="PrintElem()" id="print" style="background-color:#fbbe04;padding:5px;width:80px;cursor:pointer">Print</button></div>
+    <div style="max-width: 600px;" class="email-container" id="MyPrintDiv">
+        <table style="
         border-collapse: collapse;
         table-layout: fixed;
         margin: 0 auto;
@@ -22,178 +23,177 @@
         font-size: 14px;
         line-height: 1.4;
     "
-			   height="100%"
-			   border="0"
-			   cellpadding="0"
-			   cellspacing="0"
-			   width="100%">
-			<tbody>
-				<tr>
-					<td style=" padding: 16px 0;">
-						<table style="max-width: 600px; margin: auto; border-spacing: 0; background: #025298; padding: 4px; border-radius: 16px; overflow: hidden; border:5px solid;" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-							<tbody>
-								<tr>
-									<td style="border-collapse: collapse;">
-										<table style="margin: auto; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden;" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-											<tbody>
-												<tr>
-													<td style="border-collapse: collapse;">
-														<table style="border-spacing: 0; border-collapse: collapse;" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
-															<tbody>
-																<tr>
-																	<td style="border-collapse: collapse; padding: 16px 32px;" align="left" valign="middle">
-																		<table style="border-spacing: 0; border-collapse: collapse;" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
-																			<tbody>
-																				<tr>
-																					<td style="padding: 0; text-align: left; border-collapse: collapse;" width="40" align="left" valign="middle">
-																						<a href="https://uptbccon2022.in"
-																						   style="text-decoration: none; color: #ffffff; outline: 0; outline: none; border: 0; border: none;"
-																						   target="_blank">
-																							<img src="~/website/img/logo.png"
-																								 width="200"
-																								 border="0"
-																								 style=""
-																								 class="CToWUd"
-																								 data-bit="iit" />
-																						</a>
-																					</td>
-																					<td width="16" align="left" valign="middle" style="border-collapse: collapse;">&nbsp;</td>
-																					<td align="right" valign="middle"><h4> @Model.EntryOn</h4></td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td style="border-collapse: collapse; padding: 0 16px;">
-														<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: #f7f9fa; padding: 16px; border-radius: 8px; overflow: hidden;">
-															<tbody>
-																<tr>
-																	<td align="left" valign="middle" style="border-collapse: collapse; border-bottom: 1px solid #eaeaed;padding: 10px">
-																		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-																			<tbody>
-																				<tr>
-																					<td align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;">
-																						<span style="border-collapse: collapse; font-size: 16px; font-weight: 500; width: 100%; display: block;"> Name : @Model.UserName</span>
-																					</td>
-																					<td width="32" align="left" valign="middle" style="border-collapse: collapse;"> </td>
-																					<td align="right" valign="middle" style="border-collapse: collapse; font-size: 20px; font-weight: 500;" >₹ <span id="spnAmount"> @Model.Amount</span></td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																</tr>
-																<tr>
-																	<td align="left" valign="middle" style="border-collapse: collapse; padding: 8px 0; border-bottom: 1px solid #eaeaed; font-size: 12px; padding: 10px">
-																		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-																			<tbody>
-																				<tr>
-																					<td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;">Txn. ID</td>
-																					<td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
-																					<td align="left" valign="top" style="border-collapse: collapse; font-weight: normal;"><span id="spntranid">@Model.TransactionId</span></td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																</tr>
-																<tr>
-																	<td align="left" valign="middle" style="border-collapse: collapse; padding: 10px; border-bottom: 1px solid #eaeaed; font-size: 12px;">
-																		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-																			<tbody>
-																				<tr>
-																					<td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;">Mobile</td>
-																					<td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
-																					<td align="left" valign="top" style="border-collapse: collapse; font-weight: normal; font-size: 16px;"><span id="paymentStatus">@Model.PhoneNumber</span></td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																</tr>
-																<tr>
-																	<td align="left" valign="middle" style="border-collapse: collapse; padding: 10px; border-bottom: 1px solid #eaeaed; font-size: 12px;">
-																		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-																			<tbody>
-																				<tr>
-																					<td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;">PaymentMode</td>
-																					<td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
-																					<td align="left" valign="top" style="border-collapse: collapse; font-weight: normal; font-size: 16px;"><span id="paymentStatus">@Model.PaymentMode</span></td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																</tr>
-
-																
-															</tbody>
-														</table>
-													</td>
-												</tr>
-												
-												
-
-												<tr>
-													<td>
-														<table cellspacing="0" cellpadding="0" border="0" role="presentation" width="300" style="table-layout: fixed; width: 100%;">
-																											<tbody>
-																												<tr>
-																													<td height="15" style="font-size: 15px; line-height: 15px;">­</td>
-																												</tr>
-																												<tr>
-																													<td height="18"
-																														align="center"
-																														valign="top"
-																														style="color: #3b3f44; font-family: arial, helvetica, sans-serif; font-size: 16px; line-height: 1.5;">
-																														<a 
-																														   style="
-                                                                                                                                font-style: normal;
-                                                                                                                                font-weight: bold;
-                                                                                                                                line-height: 0.15;
-                                                                                                                                text-decoration: none;
-                                                                                                                                border-style: solid;
-                                                                                                                                display: inline-block;
-                                                                                                                                background-color: #0092ff;
-                                                                                                                                border-color: #0092ff;
-                                                                                                                                border-radius: 4px;
-                                                                                                                                border-width: 1px;
-                                                                                                                                color: #ffffff;
-                                                                                                                                font-family: arial, helvetica, sans-serif;
-                                                                                                                                font-size: 16px;
-                                                                                                                                height: 18px;
-                                                                                                                                padding-bottom: 12px;
-                                                                                                                                padding-left: 5px;
-                                                                                                                                padding-right: 5px;
-                                                                                                                                padding-top: 12px;
-                                                                                                                                width: 120px;
-                                                                                                                            "
-																														   onClick="window.print()">
-																															<p style="margin: 0;">Print</p>
-																														</a>
-																													</td>
-																												</tr>
-																												<tr>
-																													<td height="15" style="font-size: 15px; line-height: 15px;">­</td>
-																												</tr>
-																											</tbody>
-																										</table>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+               height="100%"
+               border="0"
+               cellpadding="0"
+               cellspacing="0"
+               width="100%">
+            <tbody>
+                <tr>
+                    <td style=" padding: 16px 0;">
+                        <table style="max-width: 600px; margin: auto; border-spacing: 0; background: #025298; padding: 4px; border-radius: 16px; overflow: hidden; border:5px solid;" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td style="border-collapse: collapse;">
+                                        <table style="margin: auto; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden;" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border-collapse: collapse;">
+                                                        <table style="border-spacing: 0; border-collapse: collapse;" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="border-collapse: collapse; padding: 16px 32px;" align="left" valign="middle">
+                                                                        <table style="border-spacing: 0; border-collapse: collapse;" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="padding: 0; text-align: left; border-collapse: collapse;" width="40" align="left" valign="middle">
+                                                                                        <a href="https://uptbccon2022.in"
+                                                                                           style="text-decoration: none; color: #ffffff; outline: 0; outline: none; border: 0; border: none;"
+                                                                                           target="_blank">
+                                                                                            <img src="~/website/img/logo.png"
+                                                                                                 width="200"
+                                                                                                 border="0"
+                                                                                                 style=""
+                                                                                                 class="CToWUd"
+                                                                                                 data-bit="iit" />
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    <td width="16" align="left" valign="middle" style="border-collapse: collapse;">&nbsp;</td>
+                                                                                    <td align="right" valign="middle"><h4> @Model.EntryOn</h4></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border-collapse: collapse; padding: 0 16px;">
+                                                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: #f7f9fa; padding: 16px; border-radius: 8px; overflow: hidden;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="left" valign="middle" style="border-collapse: collapse; border-bottom: 1px solid #eaeaed;padding: 10px">
+                                                                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;">
+                                                                                        <span style="border-collapse: collapse; font-size: 16px; font-weight: 500; width: 100%; display: block;"><strong>User ID</strong> : @Model.UserId</span>
+                                                                                    </td>
+                                                                                    <td align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;">
+                                                                                        <span style="border-collapse: collapse; font-size: 16px; font-weight: 500; width: 100%; display: block;"> <strong>Name</strong> : @Model.UserName</span>
+                                                                                    </td>
+                                                                                    <td width="32" align="left" valign="middle" style="border-collapse: collapse;"> </td>
+                                                                                    <td align="right" valign="middle" style="border-collapse: collapse; font-size: 20px; font-weight: 500;">₹ <span id="spnAmount"> @Model.Amount</span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" valign="middle" style="border-collapse: collapse; padding: 8px 0; border-bottom: 1px solid #eaeaed; font-size: 12px; padding: 10px">
+                                                                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;"> <strong>Txn. ID</strong></td>
+                                                                                    <td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
+                                                                                    <td align="left" valign="top" style="border-collapse: collapse; font-weight: normal;"><span id="spntranid">@Model.TransactionId</span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" valign="middle" style="border-collapse: collapse; padding: 10px; border-bottom: 1px solid #eaeaed; font-size: 12px;">
+                                                                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;"><strong>Mobile</strong></td>
+                                                                                    <td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
+                                                                                    <td align="left" valign="top" style="border-collapse: collapse; font-weight: normal; font-size: 16px;"><span id="paymentStatus">@Model.PhoneNumber</span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" valign="middle" style="border-collapse: collapse; padding: 10px; border-bottom: 1px solid #eaeaed; font-size: 12px;">
+                                                                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;"><strong>Payment Mode</strong> </td>
+                                                                                    <td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
+                                                                                    <td align="left" valign="top" style="border-collapse: collapse; font-weight: normal; font-size: 16px;"><span id="paymentStatus">@Model.PaymentMode</span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" valign="middle" style="border-collapse: collapse; padding: 10px; border-bottom: 1px solid #eaeaed; font-size: 12px;">
+                                                                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;"><strong>Valid From</strong></td>
+                                                                                    <td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
+                                                                                    <td align="left" valign="top" style="border-collapse: collapse; font-weight: normal; font-size: 16px;"><span id="paymentStatus">@Model.FromDate</span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" valign="middle" style="border-collapse: collapse; padding: 10px; border-bottom: 1px solid #eaeaed; font-size: 12px;">
+                                                                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="28%" align="left" valign="top" style="border-collapse: collapse; text-transform: capitalize;"><strong>Valid To</strong></td>
+                                                                                    <td width="16" align="left" valign="top" style="border-collapse: collapse; font-weight: normal;">:</td>
+                                                                                    <td align="left" valign="top" style="border-collapse: collapse; font-weight: normal; font-size: 16px;"><span id="paymentStatus">@Model.ToDate</span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
 
 
-		
-	</div>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+
+
+                                            
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
 </center>
-
+<script>
+    function PrintElem(elem)
+    {
+        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+        mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write('<h1>' + document.title  + '</h1>');
+        mywindow.document.write(document.getElementById('MyPrintDiv').innerHTML);
+      
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+        mywindow.print();
+        mywindow.close();
+        return true;
+    }
+</script>

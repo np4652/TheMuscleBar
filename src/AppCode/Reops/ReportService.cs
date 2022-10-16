@@ -49,7 +49,9 @@ namespace TheMuscleBar.AppCode.Reops
 
         public async Task<Invoice> GetInvoice(int tid)
         {
-            string sqlQuery = @"Select 'TID' + RIGHT('0000000' + CAST(l.Id AS VARCHAR(7)), 7) TransactionId,u.[Name] UserName,u.PhoneNumber,l.TransactionType,CAST(l.Amount AS int) Amount,l.discount,l.PaymentMode,Convert(varchar,l.EntryOn,106) EntryOn from Ledger l(nolock) inner join Users u(nolock) on u.Id = l.UserId where l.Id=@tid order by l.Id desc";
+            string sqlQuery = @"Select 'TID' + RIGHT('0000000' + CAST(l.Id AS VARCHAR(7)), 7) TransactionId,u.[Name] UserName,u.PhoneNumber,l.TransactionType,CAST(l.Amount AS int) Amount,l.UserId ,
+l.discount,l.PaymentMode,Convert(varchar,l.EntryOn,106) EntryOn ,Convert(varchar,us.DateFrom,106) FromDate,Convert(varchar,us.DateTo,106) ToDate  from Ledger l(nolock) 
+inner join Users u(nolock) on u.Id = l.UserId inner join UserSubscription us(nolock) on l.UserId=us.UserId and l.Id=us.LedgerId  where l.Id=@tid order by l.Id desc";
             var res = await _dapper.GetAsync<Invoice>(sqlQuery, new { tid }, CommandType.Text);
             return res ?? new Invoice();
         }
