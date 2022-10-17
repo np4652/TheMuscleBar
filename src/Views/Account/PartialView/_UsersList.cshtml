@@ -27,12 +27,12 @@
             <td>@Html.DisplayFor(modelItem => item.Email)</td>
             <td>@Html.DisplayFor(modelItem => item.AdharNo)</td>
             <td>@Html.DisplayFor(modelItem => item.DOB)</td>
-            <td>
+           @* <td>
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input IsActive" id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
+                    <input type="checkbox" class="custom-control-input IsActive " id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
                     <label class="custom-control-label" for="IsActive_@i"></label>
                 </div>
-            </td>
+            </td>*@
         </tr>
         i++;
     }
