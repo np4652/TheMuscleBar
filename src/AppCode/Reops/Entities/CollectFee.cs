@@ -30,5 +30,6 @@ namespace TheMuscleBar.AppCode.Reops.Entities
     public class CollectFeeResponse: Response
     {
         public int UserId { get; set; }
+        public int LedgerId { get; set; }
     }
 }
