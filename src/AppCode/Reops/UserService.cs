@@ -36,7 +36,7 @@ namespace TheMuscleBar.AppCode.Reops
 
         public async Task<IEnumerable<ApplicationUser>> GetAllAsync(ApplicationUser entity = null, int loginId = 0)
         {
-            string sqlQuery = @"select Id ,Email,PhoneNumber,UserName,TwoFactorEnabled,[Name],IsActive,MembershipType,[Address],DOB,AdharNo,MaritalStatus,EntryOn from Users(nolock) order by Id desc";
+            string sqlQuery = @"select Id ,Email,PhoneNumber,UserName,TwoFactorEnabled,[Name],IsActive,MembershipType,[Address],Convert(varchar,DOB,106)  DOB,AdharNo,MaritalStatus,EntryOn from Users(nolock) order by Id desc";
             var res = await _dapper.GetAllAsync<ApplicationUser>(sqlQuery, entity, CommandType.Text);
             return res ?? new List<ApplicationUser>();
         }
