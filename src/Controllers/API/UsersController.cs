@@ -49,12 +49,11 @@ namespace TheMuscleBar.Controllers.API
             {
                 var user = _mapper.Map<ApplicationUser>(model);
                 user.UserName = model.Email.Trim();
-                user.Role = Role.Customer.ToString();
+                user.Role = req.Role != Role.Staff ? Role.Customer.ToString() : Role.Staff.ToString();
                 var res = await _userManager.CreateAsync(user, model.Password);
                 if (res.Succeeded)
                 {
                     user = _userManager.FindByEmailAsync(user.Email).Result;
-
                     //await _userManager.AddToRoleAsync(user, Role.Customer.ToString());
                     model.Password = string.Empty;
                     model.Email = string.Empty;
@@ -70,7 +69,6 @@ namespace TheMuscleBar.Controllers.API
                     model = null;
                     model = new RegisterViewModel();
                 }
-
                 return Ok(response);
             }
             return Ok(response);
