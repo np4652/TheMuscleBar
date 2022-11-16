@@ -1,0 +1,84 @@
+﻿@model IEnumerable<TheMuscleBar.Models.UserList>
+<style>
+a.chosen-single{
+height:56px !important;
+}
+input.chosen-search-input{
+    width:92%!important;
+}
+</style>
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputState">Users</label>
+                <select id="ddlusers" class="form-control chosen-select"  asp-items="@(new SelectList(Model,"ID","Name"))">
+                    <option value="0">::Select User::</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputCity">From Date</label>
+                <input type="text" id="txtfromdate" class="form-control" placeholder="Select From Date" />
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="inputZip">To Date</label>
+                <input type="text" id="txttodate" class="form-control" placeholder="Select To Date" />
+            </div>
+              <div class="form-group col-md-3">
+               <button type="submit" id="btnsubmit" class="btn-dark">Search</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="tblatt">
+                 
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+<script>
+    $('#txtfromdate').datepicker({
+        dateFormat: 'dd M yy'
+
+    });
+      $('#txtfromdate').datepicker('setDate', new Date());
+     $('#txttodate').datepicker({
+        dateFormat: 'dd M yy'
+    });
+                $(".chosen-select").chosen();
+     $('#txttodate').datepicker('setDate', new Date());
+     $(document).ready(function(){
+     getAttendance();
+     });
+     $('#btnsubmit').click(function(){
+         getAttendance();
+     });
+
+      function getAttendance() {
+            Q.preloader.load();
+            $.ajax({
+                type: 'post',
+                url: '/Report/_Attendance',
+                data: { id:$('#ddlusers').val(),fromdate:$('#txtfromdate').val(),todate:$('#txttodate').val()},
+                success: function (data) {
+                    $('table').html(data);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    console.log(data);
+                    Q.notify(-1, 'An error occurred.');
+                },
+            });
+            Q.preloader.remove();
+        }
+</script>
+}

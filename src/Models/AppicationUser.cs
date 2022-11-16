@@ -4,7 +4,7 @@ using TheMuscleBar.AppCode.Enums;
 
 namespace TheMuscleBar.Models
 {
-    public class ApplicationUser: ApplicationUserProcModel
+    public class ApplicationUser : ApplicationUserProcModel
     {
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
@@ -35,5 +35,11 @@ namespace TheMuscleBar.Models
         public bool TwoFactorEnabled { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
+    }
+
+    public class UserList
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }

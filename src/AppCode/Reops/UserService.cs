@@ -36,7 +36,9 @@ namespace TheMuscleBar.AppCode.Reops
 
         public async Task<IEnumerable<ApplicationUser>> GetAllAsync(ApplicationUser entity = null, int loginId = 0)
         {
-            string sqlQuery = @"select Id ,Email,PhoneNumber,UserName,TwoFactorEnabled,[Name],IsActive,MembershipType,[Address],Convert(varchar,DOB,106)  DOB,AdharNo,MaritalStatus,EntryOn from Users(nolock) order by Id desc";
+            string sqlQuery = @"select u.Id ,Email,PhoneNumber,UserName,TwoFactorEnabled,u.[Name],IsActive,MembershipType,[Address],Convert(varchar,DOB,106)  DOB,AdharNo,MaritalStatus,EntryOn,ar.[Name] 'Role'
+ from Users u(nolock) inner join UserRoles ur on u.Id=ur.UserId 
+ inner join ApplicationRole ar on ar.Id=ur.RoleId where ar.Name='"+entity.Role+"' and u.id<>1 order by u.Id desc";
             var res = await _dapper.GetAllAsync<ApplicationUser>(sqlQuery, entity, CommandType.Text);
             return res ?? new List<ApplicationUser>();
         }
@@ -134,6 +136,15 @@ namespace TheMuscleBar.AppCode.Reops
         public async Task<Response> SaveApiLog(ApiModel req)
         {
             var res = await _dapper.ExecuteAsync("proc_SaveApiLog", req, commandType: CommandType.StoredProcedure);
+            return new Response
+            {
+                StatusCode = res != -1 ? ResponseStatus.Success : ResponseStatus.Failed,
+                ResponseText = res != -1 ? ResponseStatus.Success.ToString() : ResponseStatus.Failed.ToString(),
+            };
+        }
+        public async Task<Response> MergeAttendance(DataTable req)
+        {
+            var res = await _dapper.ExecuteAsync("pro_mergeTtendance", new{typattendancedetails = req }, commandType: CommandType.StoredProcedure);
             return new Response
             {
                 StatusCode = res != -1 ? ResponseStatus.Success : ResponseStatus.Failed,

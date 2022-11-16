@@ -44,7 +44,26 @@ namespace TheMuscleBar.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> Attendance()
+        {
+            var response = await _reportService.GetUsersList();
 
+            return View(response);
+        }
+        [HttpPost]
+        public async Task<IActionResult> _Attendance(int id,string fromdate,string todate)
+        {
+            var response = await _reportService.GetAttendance( fromdate, todate, id);
+
+            return PartialView("_attendance", response);
+        }
+        public async Task<IActionResult> UsersList()
+        {
+            var response = await _reportService.GetUsersList();
+
+            return View(response);
+        }
         public async Task<IActionResult> _Subscriptions()
         {
             var response = await _reportService.GetSubscripitionReports();
