@@ -3,17 +3,19 @@ using TheMuscleBar.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AutoMapper;
-using TheMuscleBar.AppCode.CustomAttributes;
-using System.Linq;
+
 using System;
 using TheMuscleBar.AppCode.Data;
 using Microsoft.AspNetCore.Http;
 using TheMuscleBar.AppCode.Enums;
-using Microsoft.AspNetCore.Authorization;
+
 using TheMuscleBar.Models.ViewModel;
 using System.Collections.Generic;
-using TheMuscleBar.AppCode.Helper;
+
 using TheMuscleBar.AppCode.Reops.Entities;
+using System.Data;
+using System.Reflection;
+using Newtonsoft.Json;
 
 namespace TheMuscleBar.Controllers.API
 {
@@ -110,6 +112,18 @@ namespace TheMuscleBar.Controllers.API
                 Params= data.data
             };
             var response = _users.SaveApiLog(req).Result;
+
+            try
+            {
+                var attlst = JsonConvert.DeserializeObject<List<AttendanceInsert>>(data.data);
+                var dt = ToDataTable(attlst);
+                await _users.MergeAttendance(dt);
+            }
+            catch (Exception ex )
+            { 
+            
+            }
+
             return Ok(response);
         }
 
@@ -135,5 +149,40 @@ namespace TheMuscleBar.Controllers.API
                 return Ok("Something went wrong");
             }
         }
+
+        [HttpPost(nameof(attendance))]
+        public async Task<IActionResult> attendance(List<AttendanceInsert> data)
+        {
+
+            var dt = ToDataTable(data);
+            await _users.MergeAttendance(dt);
+            return Ok("Success");
+        }
+        public DataTable ToDataTable<T>(List<T> items)
+        {
+            DataTable dataTable = new DataTable(typeof(T).Name);
+            //Get all the properties
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (PropertyInfo prop in Props)
+            {
+                //Setting column names as Property names
+                dataTable.Columns.Add(prop.Name);
+            }
+            foreach (T item in items)
+            {
+                var values = new object[Props.Length];
+                for (int i = 0; i < Props.Length; i++)
+                {
+                    //inserting property values to datatable rows
+                    values[i] = Props[i].GetValue(item, null);
+                }
+                dataTable.Rows.Add(values);
+            }
+            //put a breakpoint here and check datatable
+            return dataTable;
+        }
+     
+
+
     }
 }

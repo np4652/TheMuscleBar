@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using TheMuscleBar.AppCode.Reops.Entities;
 using TheMuscleBar.Models.ViewModel;
 using System.Collections.Generic;
+using System.Data;
 
 namespace TheMuscleBar.AppCode.Interfaces
 {
@@ -12,5 +13,6 @@ namespace TheMuscleBar.AppCode.Interfaces
         Task<IEnumerable<UnSubscribedUser>> GetSubscriptionExpired();
         Task<UserDetailsReturn> GetSubscriptionByuser(int userid);
         Task<Response> SaveApiLog(ApiModel req);
+        Task<Response> MergeAttendance(DataTable req);
     }
 }

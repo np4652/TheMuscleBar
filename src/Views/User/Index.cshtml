@@ -6,9 +6,19 @@
 }
 <div class="card mt-2">
     <div class="card-body">
-        <div class="float-right">
-          @*  <button id="btnAddUser" class="btn btn-dark">New</button>*@
-        </div>
+      <div class="row">
+          <div class="col-sm-10">
+                 <select id="ddlcust" class="form-control">
+            <option value="Customer">Customer</option>
+            <option value="Staff">Staff</option>
+        </select>
+          </div>
+           <div class="col-sm-2">
+                <button id="btnsubmit" class="btn-dark">Search</button>
+          </div>
+     
+     
+      </div>
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -34,7 +44,8 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            loadData();
+           var v=$('#ddlcust').val();
+        loadData(v);
         });
         var editUser = (id = -1) => {
             $.post('/User/Edit', { id }).done(result => {
@@ -44,8 +55,8 @@
             }).fail(xhr => Q.notify(-1, xhr.responseText));
         };
         $('#btnAddUser').click(() => editUser());
-        const loadData = () => {
-            $.post('/User/UsersList').done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
+        const loadData = (role) => {
+            $.post('/User/UsersList',{role}).done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
         }
 
         const collectFeeForm = (userId) => {
@@ -56,5 +67,9 @@
                 });
             }).fail(xhr => Q.notify(-1, xhr.responseText));
         }
+        $('#btnsubmit').click(function(){
+             var v=$('#ddlcust').val();
+        loadData(v);
+        })
     </script>
 }

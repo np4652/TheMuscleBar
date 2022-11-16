@@ -42,7 +42,7 @@ namespace TheMuscleBar.Controllers
 
         [Authorize(Roles = "1")]
         [HttpPost]
-        public async Task<IActionResult> UsersList(Role role = Role.Customer)
+        public async Task<IActionResult> UsersList(string role ="Customer")
         {
             int loginId = User.GetLoggedInUserId<int>();
             var users = await _users.GetAllAsync(new ApplicationUser { Role = role.ToString() }, loginId);
