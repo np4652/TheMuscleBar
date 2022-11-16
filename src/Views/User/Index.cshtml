@@ -6,19 +6,17 @@
 }
 <div class="card mt-2">
     <div class="card-body">
-      <div class="row">
-          <div class="col-sm-10">
-                 <select id="ddlcust" class="form-control">
-            <option value="Customer">Customer</option>
-            <option value="Staff">Staff</option>
-        </select>
-          </div>
-           <div class="col-sm-2">
+        <div class="row" id="customeTool">
+            <div class="col-sm-4">
+                <select id="ddlcust" class="form-control">
+                    <option value="Customer">Customer</option>
+                    <option value="Staff">Staff</option>
+                </select>
+            </div>
+            @*<div class="col-sm-2">
                 <button id="btnsubmit" class="btn-dark">Search</button>
-          </div>
-     
-     
-      </div>
+            </div>*@
+        </div>
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -31,7 +29,6 @@
                             <th>EmailID</th>
                             <th>Adhaar</th>
                             <th>DOB</th>
-                            @*<th>IsActive</th>*@
                         </tr>
                     </thead>
                     <tbody>
@@ -44,8 +41,8 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-           var v=$('#ddlcust').val();
-        loadData(v);
+            var v = $('#ddlcust').val();
+            loadData(v);
         });
         var editUser = (id = -1) => {
             $.post('/User/Edit', { id }).done(result => {
@@ -56,7 +53,7 @@
         };
         $('#btnAddUser').click(() => editUser());
         const loadData = (role) => {
-            $.post('/User/UsersList',{role}).done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
+            $.post('/User/UsersList', { role }).done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
         }
 
         const collectFeeForm = (userId) => {
@@ -67,9 +64,15 @@
                 });
             }).fail(xhr => Q.notify(-1, xhr.responseText));
         }
-        $('#btnsubmit').click(function(){
-             var v=$('#ddlcust').val();
-        loadData(v);
-        })
+
+        
+
+        $('#ddlcust').change(e => {
+            if (dt) {
+                dt.destroy();
+            }
+            var v = $('#ddlcust').val();
+            loadData(v);
+        });
     </script>
 }

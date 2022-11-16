@@ -37,11 +37,13 @@
         i++;
     }
     <script>
-        $('table').DataTable({
+      var dt = $('table').DataTable({
+            destroy: true,
             initComplete: function () {
                 $("div.dataTables_length").html($('#btnAddUser'));
             }
-        });
+      });
+        $('#ddlcust').css({ 'position': 'absolute','z-index':'999'});
         $('.btnaddUser').click(e => {
             let userId = $(e.currentTarget).closest('tr').data().userId;
             editUser(userId);
