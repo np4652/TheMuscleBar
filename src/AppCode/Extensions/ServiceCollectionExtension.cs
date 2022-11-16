@@ -52,6 +52,7 @@ namespace TheMuscleBar.AppCode.Extensions
             services.AddSingleton<ITokenService, TokenService>();
             services.AddScoped<Database>();
             services.AddAutoMapper(typeof(Startup));
+            services.AddProgressiveWebApp();
             services.AddHangfire(x => x.UseSqlServerStorage(dbConnectionString));
             services.AddHangfireServer();
             services.AddLogging(c => c.AddFluentMigratorConsole())
