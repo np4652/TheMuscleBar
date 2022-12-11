@@ -14,5 +14,6 @@ namespace TheMuscleBar.AppCode.Interfaces
         Task<UserDetailsReturn> GetSubscriptionByuser(int userid);
         Task<Response> SaveApiLog(ApiModel req);
         Task<Response> MergeAttendance(DataTable req);
+        Task<Response> deleteUsersData(int id);
     }
 }

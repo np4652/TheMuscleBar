@@ -151,5 +151,25 @@ namespace TheMuscleBar.AppCode.Reops
                 ResponseText = res != -1 ? ResponseStatus.Success.ToString() : ResponseStatus.Failed.ToString(),
             };
         }
+        public async Task<Response> deleteUsersData(int id)
+        {
+            try
+            {
+                var res = await _dapper.ExecuteAsync("proc_deleteUser", new { UserID = id }, commandType: CommandType.StoredProcedure);
+                return new Response
+                {
+                    StatusCode = res != -1 ? ResponseStatus.Success : ResponseStatus.Failed,
+                    ResponseText = res != -1 ? ResponseStatus.Success.ToString() : ResponseStatus.Failed.ToString(),
+                };
+            }
+            catch(Exception ex)
+            {
+                return new Response
+                {
+                    StatusCode = ResponseStatus.Failed,
+                    ResponseText = "Some thing wrong"
+                };
+            }
+        }
     }
 }

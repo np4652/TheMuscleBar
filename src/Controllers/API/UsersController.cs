@@ -136,6 +136,8 @@ namespace TheMuscleBar.Controllers.API
             return Ok(res);
         }
 
+      
+
         [HttpPost(nameof(GetById))]
         public async Task<IActionResult> GetById(int id)
         {

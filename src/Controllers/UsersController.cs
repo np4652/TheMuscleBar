@@ -93,8 +93,17 @@ namespace TheMuscleBar.Controllers
             res.UserId = user.Id;
             return PartialView(res);
         }
-
+        
+        [Authorize(Roles = "1")]
         [HttpPost]
+        public async Task<IActionResult> DeleteUserData(int id)
+        {
+            var res = await _users.deleteUsersData(id);
+            return Json(res);
+        }
+        
+
+       [HttpPost]
         [ValidateAjax]
         public async Task<IActionResult> CollectFee(CollectFee collectFee)
         {

@@ -27,6 +27,7 @@
             <td>@Html.DisplayFor(modelItem => item.Email)</td>
             <td>@Html.DisplayFor(modelItem => item.AdharNo)</td>
             <td>@Html.DisplayFor(modelItem => item.DOB)</td>
+             <td><button id="btndele"  class="btn-link btndelete" >Delete</button></td>
            @* <td>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input IsActive " id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
@@ -48,6 +49,39 @@
             let userId = $(e.currentTarget).closest('tr').data().userId;
             editUser(userId);
         });
+          $('.btndelete').click(e => {
+            let userId = $(e.currentTarget).closest('tr').data().userId;
+            let html=`<input type='hidden' class='form-control' value='${userId}' id='hdnid'></input><input type='text' class='form-control' id='txtkey' placeholder='Enter Security Key Here'></input>
+            <a type='submit' class="btnsubmit" id='btnsubmit'>submit</a>`;
+                 Q.alert({
+                    body: html
+                });
+        });
+
+        
+         $(document).on("click", ".btnsubmit", e => {
+
+             
+         
+              if($('#txtkey').val()!='asdzxc')
+              {   
+                  an.title = 'Ops';
+                    an.content = 'Invalid security Key';
+                    an.alert(-1);
+                  return;
+              }
+                $.post('/User/DeleteUserData',{id:$('#hdnid').val()})
+                .done(result => {
+                     an.title = 'msg';
+                    an.content = result.responseText;
+                    an.alert(result.statusCode);
+                }).fail(xhr => {
+                    an.title = 'Oops!!';
+                    an.content = xhr.responseText;
+                    an.alert(-1);
+                }).always(() => { });
+
+         })
 
         $('.IsActive').unbind().click(e => {
             let element = $(e.currentTarget).closest('tr');
