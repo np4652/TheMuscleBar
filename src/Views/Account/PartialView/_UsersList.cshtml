@@ -27,61 +27,31 @@
             <td>@Html.DisplayFor(modelItem => item.Email)</td>
             <td>@Html.DisplayFor(modelItem => item.AdharNo)</td>
             <td>@Html.DisplayFor(modelItem => item.DOB)</td>
-             <td><button id="btndele"  class="btn-link btndelete" >Delete</button></td>
-           @* <td>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input IsActive " id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
-                    <label class="custom-control-label" for="IsActive_@i"></label>
-                </div>
-            </td>*@
+            <td><span class="btndelete"><i class="fa fa-times fa-2x text-danger"></i></span></td>
+            @* <td>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input IsActive " id="IsActive_@i" @(item.IsActive ? "checked='checked'" : "") />
+                        <label class="custom-control-label" for="IsActive_@i"></label>
+                    </div>
+                </td>*@
         </tr>
         i++;
     }
     <script>
-      var dt = $('table').DataTable({
+        var dt = $('table').DataTable({
             destroy: true,
             initComplete: function () {
                 $("div.dataTables_length").html($('#btnAddUser'));
             }
-      });
-        $('#ddlcust').css({ 'position': 'absolute','z-index':'999'});
+        });
+
+        $('#ddlcust').css({ 'position': 'absolute', 'z-index': '999' });
+
         $('.btnaddUser').click(e => {
             let userId = $(e.currentTarget).closest('tr').data().userId;
             editUser(userId);
         });
-          $('.btndelete').click(e => {
-            let userId = $(e.currentTarget).closest('tr').data().userId;
-            let html=`<input type='hidden' class='form-control' value='${userId}' id='hdnid'></input><input type='text' class='form-control' id='txtkey' placeholder='Enter Security Key Here'></input>
-            <a type='submit' class="btnsubmit" id='btnsubmit'>submit</a>`;
-                 Q.alert({
-                    body: html
-                });
-        });
 
-        
-         $(document).on("click", ".btnsubmit", e => {
-
-             
-         
-              if($('#txtkey').val()!='asdzxc')
-              {   
-                  an.title = 'Ops';
-                    an.content = 'Invalid security Key';
-                    an.alert(-1);
-                  return;
-              }
-                $.post('/User/DeleteUserData',{id:$('#hdnid').val()})
-                .done(result => {
-                     an.title = 'msg';
-                    an.content = result.responseText;
-                    an.alert(result.statusCode);
-                }).fail(xhr => {
-                    an.title = 'Oops!!';
-                    an.content = xhr.responseText;
-                    an.alert(-1);
-                }).always(() => { });
-
-         })
 
         $('.IsActive').unbind().click(e => {
             let element = $(e.currentTarget).closest('tr');
@@ -97,15 +67,32 @@
                     an.alert(-1);
                 }).always(() => { });
         });
+
         $(document).on("click", ".btnCollectFee", e => {
             let userId = $(e.currentTarget).closest('tr').data().userId;
             collectFeeForm(userId)
-        })
-        //$('.btnCollectFee').click(e => {
-        //    alert('1');
-        //    let userId = $(e.currentTarget).closest('tr').data().userId;
-        //    collectFeeForm(userId)
-        //})
+        });
+
+        $(document).on('click', '.btndelete', e => {
+            let userId = $(e.currentTarget).closest('tr').data().userId;
+            let html = `<input type='hidden' class='form-control' value='${userId}' id='hdnid'></input><input type='text' class='form-control' id='txtkey' placeholder='Enter Security Key Here'></input>
+                    <a type='submit' class="btn btn-dark" id='btnDelete'>SUBMIT</a>`;
+            Q.alert({
+                title:'Delete Record',
+                body: html
+            });
+            $('#btnDelete').click(e => {
+                if ($('#txtkey').val() != 'asdzxc') {
+                    Q.notify(-1, 'Invalid security Key');
+                    return false;
+                }
+                $(e.currentTarget).text('Requesting....').attr('disabled', 'disabled');
+                $.post('/User/DeleteUserData', { id: $('#hdnid').val() })
+                    .done(result => {
+                        Q.notify(result.statusCode, result.responseText);
+                    }).fail(xhr => Q.notify(-1, xhr.responseText)).always(() => $(e.currentTarget).text('SUBMIT').removeAttr('disabled'));
+            });
+        });
     </script>
 }
 else

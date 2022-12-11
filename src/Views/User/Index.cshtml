@@ -54,7 +54,8 @@
         };
         $('#btnAddUser').click(() => editUser());
         const loadData = (role) => {
-            $.post('/User/UsersList', { role }).done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
+            Q.preloader.load();
+            $.post('/User/UsersList', { role }).done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText)).always(() => Q.preloader.remove());
         }
 
         const collectFeeForm = (userId) => {
