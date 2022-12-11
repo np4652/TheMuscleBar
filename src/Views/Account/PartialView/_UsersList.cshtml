@@ -73,26 +73,6 @@
             collectFeeForm(userId)
         });
 
-        $(document).on('click', '.btndelete', e => {
-            let userId = $(e.currentTarget).closest('tr').data().userId;
-            let html = `<input type='hidden' class='form-control' value='${userId}' id='hdnid'></input><input type='text' class='form-control' id='txtkey' placeholder='Enter Security Key Here'></input>
-                    <a type='submit' class="btn btn-dark" id='btnDelete'>SUBMIT</a>`;
-            Q.alert({
-                title:'Delete Record',
-                body: html
-            });
-            $('#btnDelete').click(e => {
-                if ($('#txtkey').val() != 'asdzxc') {
-                    Q.notify(-1, 'Invalid security Key');
-                    return false;
-                }
-                $(e.currentTarget).text('Requesting....').attr('disabled', 'disabled');
-                $.post('/User/DeleteUserData', { id: $('#hdnid').val() })
-                    .done(result => {
-                        Q.notify(result.statusCode, result.responseText);
-                    }).fail(xhr => Q.notify(-1, xhr.responseText)).always(() => $(e.currentTarget).text('SUBMIT').removeAttr('disabled'));
-            });
-        });
     </script>
 }
 else
