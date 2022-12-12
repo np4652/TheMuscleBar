@@ -458,7 +458,10 @@ var Q;
 
     Q.preloader = {
         load: () => $("body").addClass('has-loading').append('<div class="loading"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>'),
-        remove: () => $(".loading").removeClass('has-loading').remove()
+        remove: () => {
+            $(".loading").removeClass('has-loading').remove();
+            $("body").removeClass('has-loading')
+        }
     };
 
     Q.print = (id, css = '') => {
