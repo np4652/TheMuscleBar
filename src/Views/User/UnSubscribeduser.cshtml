@@ -1,22 +1,11 @@
 ﻿@using TheMuscleBar.AppCode.Extensions
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = "Un Subscribed Users";
     Layout = "_LayOut";
-    string role = User.GetLoggedInUserRoles();
+   
 }
 <div class="card mt-2">
     <div class="card-body">
-        <div class="row" id="customeTool">
-            <div class="col-sm-4">
-                <select id="ddlcust" class="form-control">
-                    <option value="Customer">Customer</option>
-                    <option value="Staff">Staff</option>
-                </select>
-            </div>
-            @*<div class="col-sm-2">
-                <button id="btnsubmit" class="btn-dark">Search</button>
-                </div>*@
-        </div>
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -42,40 +31,17 @@
 @section scripts{
 <script>
     $(document).ready(function () {
-        var v = $('#ddlcust').val();
-        loadData(v);
+      
+        loadData();
     });
-    var editUser = (id = -1) => {
-        $.post('/User/Edit', { id }).done(result => {
-            Q.alert({
-                body: result
-            });
-        }).fail(xhr => Q.notify(-1, xhr.responseText));
-    };
-    $('#btnAddUser').click(() => editUser());
+ 
     const loadData = (role) => {
         Q.preloader.load();
-        $.post('/User/UsersList', { role }).done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText)).always(() => Q.preloader.remove());
+        $.post('/User/UnSubscribeduserlist').done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText)).always(() => Q.preloader.remove());
     }
 
-    const collectFeeForm = (userId) => {
-        $.post('/User/CollectForm', { userId }).done(result => {
-            Q.alert({
-                title: 'Collect Fee',
-                body: result
-            });
-        }).fail(xhr => Q.notify(-1, xhr.responseText));
-    }
+ 
 
-
-
-    $('#ddlcust').change(e => {
-        if (dt) {
-            dt.destroy();
-        }
-        var v = $('#ddlcust').val();
-        loadData(v);
-    });
 
 
 
@@ -95,11 +61,8 @@
             $(e.currentTarget).text('Requesting....').attr('disabled', 'disabled');
             $.post('/User/DeleteUserData', { id: $('#hdnid').val() })
                 .done(result => {
-
                     Q.notify(result.statusCode, result.responseText);
-                     var v = $('#ddlcust').val();
-                    loadData(v);
-
+                    loadData();
                 }).fail(xhr => Q.notify(-1, xhr.responseText)).always(() => $(e.currentTarget).text('SUBMIT').removeAttr('disabled'));
         });
     });

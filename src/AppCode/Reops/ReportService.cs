@@ -41,12 +41,16 @@ namespace TheMuscleBar.AppCode.Reops
             return res ?? new List<Legder>();
         }
 
-        public async Task<IEnumerable<SubscripitionReport>> GetSubscripitionReports()
+        public async Task<IEnumerable<SubscripitionReport>> GetSubscripitionReports(string fromdate, string todate, int id = 0)
         {
-            string sqlQuery = @"Select u.[Name] UserName,u.PhoneNumber, us.UserId,us.LedgerId,Convert(varchar,us.DateFrom,106) DateFrom,Convert(varchar,us.DateTo,106) DateTo  
-from UserSubscription us(nolock) inner join users u(nolock) on u.Id = us.UserId order by us.id desc";
-            var res = await _dapper.GetAllAsync<SubscripitionReport>(sqlQuery, null, CommandType.Text);
+//            string sqlQuery = @"Select u.[Name] UserName,u.PhoneNumber, us.UserId,us.LedgerId,Convert(varchar,us.DateFrom,106) DateFrom,Convert(varchar,us.DateTo,106) DateTo  
+//from UserSubscription us(nolock) inner join users u(nolock) on u.Id = us.UserId order by us.id desc";
+//            var res = await _dapper.GetAllAsync<SubscripitionReport>(sqlQuery, null, CommandType.Text);
+//            return res ?? new List<SubscripitionReport>();
+
+            var res = await _dapper.GetAllAsync<SubscripitionReport>("proc_GetSubscripitionReports", new { status = id, Fromdate = fromdate, Todate = todate }, commandType: CommandType.StoredProcedure);
             return res ?? new List<SubscripitionReport>();
+
         }
 
         public async Task<Invoice> GetInvoice(int tid)

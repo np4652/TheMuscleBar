@@ -49,6 +49,22 @@ namespace TheMuscleBar.Controllers
             users = users.Where(x => x.Id != loginId);
             return PartialView("~/Views/Account/PartialView/_UsersList.cshtml", users);
         }
+        [Authorize(Roles = "1")]
+        [HttpGet]
+        public async Task<IActionResult> UnSubscribeduser()
+        {
+           
+            return View();
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public async Task<IActionResult> UnSubscribeduserlist()
+        {
+            int loginId = User.GetLoggedInUserId<int>();
+            var users = await _users.GetUnSubscribed();
+            return PartialView("~/Views/Account/PartialView/_UnSubscribeduser.cshtml", users);
+        }
 
         [HttpPost]
         public async Task<IActionResult> EditAsync(int id = -1)

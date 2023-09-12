@@ -43,6 +43,14 @@ namespace TheMuscleBar.AppCode.Reops
             return res ?? new List<ApplicationUser>();
         }
 
+        public async Task<IEnumerable<ApplicationUser>> GetUnSubscribed()
+        {
+            string sqlQuery = @"select u.Id ,Email,PhoneNumber,UserName,TwoFactorEnabled,u.[Name],IsActive,MembershipType,[Address],Convert(varchar,DOB,106)  DOB,AdharNo,MaritalStatus,EntryOn
+ from Users u(nolock) where u.id<>1 and u.Id not in ( select UserId from UserSubscription) order by u.Id desc";
+            var res = await _dapper.GetAllAsync<ApplicationUser>(sqlQuery, null, CommandType.Text);
+            return res ?? new List<ApplicationUser>();
+        }
+
         public async Task<Response<ApplicationUser>> GetByIdAsync(int id)
         {
             Response<ApplicationUser> res = new Response<ApplicationUser>();

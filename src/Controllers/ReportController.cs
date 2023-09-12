@@ -64,9 +64,9 @@ namespace TheMuscleBar.Controllers
 
             return View(response);
         }
-        public async Task<IActionResult> _Subscriptions()
+        public async Task<IActionResult> _Subscriptions(int id, string fromdate, string todate)
         {
-            var response = await _reportService.GetSubscripitionReports();
+            var response = await _reportService.GetSubscripitionReports(fromdate, todate, id);
             return PartialView(response ?? new List<SubscripitionReport>());
         }
 

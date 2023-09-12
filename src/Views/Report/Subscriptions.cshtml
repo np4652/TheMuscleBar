@@ -1,4 +1,40 @@
-﻿<div class="card mt-2">
+﻿<style>
+a.chosen-single{
+height:56px !important;
+}
+input.chosen-search-input{
+    width:92%!important;
+}
+</style>
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputState">Status</label>
+                <select id="ddlusers" class="form-control chosen-select"  >
+                    <option value="0">All</option>
+                    <option value="1">Expired</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputCity">From Date</label>
+                <input type="text" id="txtfromdate" class="form-control" placeholder="Select From Date" />
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="inputZip">To Date</label>
+                <input type="text" id="txttodate" class="form-control" placeholder="Select To Date" />
+            </div>
+              <div class="form-group col-md-3">
+               <button type="submit" id="btnsubmit" class="btn-dark">Search</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card mt-2">
     <div class="card-body">
         <div class="table-container">
             <div class="table-responsive">
@@ -22,10 +58,43 @@
 </div>
 @section scripts{
     <script>
-    const loadData = () => {
-        $.post('/Report/_Subscriptions').done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
-    }
+         $('#txtfromdate').datepicker({
+        dateFormat: 'dd M yy'
+
+    });
+      $('#txtfromdate').datepicker('setDate', new Date());
+     $('#txttodate').datepicker({
+        dateFormat: 'dd M yy'
+    });
+                $(".chosen-select").chosen();
+     $('#txttodate').datepicker('setDate', new Date());
+    //const loadData = () => {
+
+
+    //    $.post('/Report/_Subscriptions').done(result => $('tbody').html(result)).fail(xhr => Q.notify(-1, xhr.responseText));
+    //}
     loadData();
+      $('#btnsubmit').click(function(){
+         loadData();
+     });
+
+       function loadData() {
+            Q.preloader.load();
+            $.ajax({
+                type: 'post',
+                url: '/Report/_Subscriptions',
+                data: { id:$('#ddlusers').val(),fromdate:$('#txtfromdate').val(),todate:$('#txttodate').val()},
+                success: function (data) {
+                    $('tbody').html(data);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    console.log(data);
+                    Q.notify(-1, 'An error occurred.');
+                },
+            });
+            Q.preloader.remove();
+        }
     </script>
 
 }
