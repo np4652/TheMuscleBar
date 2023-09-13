@@ -1,0 +1,282 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\src\\TheMuscleBar.csproj": {}
+  },
+  "projects": {
+    "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\ApiRequestUtility\\ApiRequestUtility.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\ApiRequestUtility\\ApiRequestUtility.csproj",
+        "projectName": "ApiRequestUtility",
+        "projectPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\ApiRequestUtility\\ApiRequestUtility.csproj",
+        "packagesPath": "C:\\Users\\Rishu\\.nuget\\packages\\",
+        "outputPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\ApiRequestUtility\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Rishu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\EmailService\\EmailService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\EmailService\\EmailService.csproj",
+        "projectName": "EmailService",
+        "projectPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\EmailService\\EmailService.csproj",
+        "packagesPath": "C:\\Users\\Rishu\\.nuget\\packages\\",
+        "outputPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\EmailService\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Rishu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\src\\TheMuscleBar.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\src\\TheMuscleBar.csproj",
+        "projectName": "TheMuscleBar",
+        "projectPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\src\\TheMuscleBar.csproj",
+        "packagesPath": "C:\\Users\\Rishu\\.nuget\\packages\\",
+        "outputPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\src\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Rishu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\ApiRequestUtility\\ApiRequestUtility.csproj": {
+                "projectPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\ApiRequestUtility\\ApiRequestUtility.csproj"
+              },
+              "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\EmailService\\EmailService.csproj": {
+                "projectPath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\EmailService\\EmailService.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[4.5.3.3, )"
+            },
+            "FluentMigrator": {
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "FluentMigrator.Runner": {
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.7.28, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.22, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[3.1.20, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "NLog.Config": {
+              "target": "Package",
+              "version": "[4.7.13, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[4.14.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.4.3, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "WebEssentials.AspNetCore.PWA": {
+              "target": "Package",
+              "version": "[1.0.65, )"
+            },
+            "linq2db": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

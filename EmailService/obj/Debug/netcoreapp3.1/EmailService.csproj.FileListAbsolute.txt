@@ -1,0 +1,10 @@
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\bin\Debug\netcoreapp3.1\EmailService.deps.json
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\bin\Debug\netcoreapp3.1\EmailService.dll
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\bin\Debug\netcoreapp3.1\EmailService.pdb
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.AssemblyReference.cache
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\obj\Debug\netcoreapp3.1\EmailService.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfoInputs.cache
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfo.cs
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb

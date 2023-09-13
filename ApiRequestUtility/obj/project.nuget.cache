@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "XlJsniBYD0DVnXzQSxIHFG2tcXEF4p8xV4x2+w+XXS9mCqAlkDk86s//+vh1FxyM+OZ4Ku7syDG0H2BHaOQF4w==",
+  "success": true,
+  "projectFilePath": "D:\\Rishu\\Rishabh Software\\gym\\Musclebar\\MuscleBarGit\\TheMuscleBar\\ApiRequestUtility\\ApiRequestUtility.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Rishu\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

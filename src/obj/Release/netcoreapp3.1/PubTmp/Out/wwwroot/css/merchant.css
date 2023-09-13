@@ -1,0 +1,142 @@
+﻿.ct-process-item {
+    position: relative;
+    padding: 0 15px;
+    text-align: center;
+    margin-bottom: 17px;
+    width: 100%;
+    margin-top: 28px;
+}
+
+.ct-process-icon {
+    background-color: #fdb491;
+    height: 176px;
+    width: 176px;
+    line-height: 136px;
+    -webkit-border-radius: 100%;
+    -khtml-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+    margin: 0 auto 20px;
+    -webkit-transition: all .3s linear 0ms;
+    -khtml-transition: all .3s linear 0ms;
+    -moz-transition: all .3s linear 0ms;
+    -ms-transition: all .3s linear 0ms;
+    -o-transition: all .3s linear 0ms;
+    transition: all .3s linear 0ms;
+    position: relative;
+    z-index: 1;
+}
+
+    .ct-process-icon number {
+        top: -11px;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        background-color: #515251;
+        font-size: 14px;
+        color: #fff;
+        font-weight: 600;
+        line-height: 24px;
+        -webkit-border-radius: 24px;
+        -khtml-border-radius: 24px;
+        -moz-border-radius: 24px;
+        -ms-border-radius: 24px;
+        -o-border-radius: 24px;
+        border-radius: 24px;
+        left: 8px;
+        -webkit-transition: all .3s linear 0ms;
+        -khtml-transition: all .3s linear 0ms;
+        -moz-transition: all .3s linear 0ms;
+        -ms-transition: all .3s linear 0ms;
+        -o-transition: all .3s linear 0ms;
+        transition: all .3s linear 0ms;
+    }
+
+    .ct-process-icon span {
+        display: block;
+        width: 303px;
+        height: 226px;
+        z-index: -1;
+        position: absolute;
+        top: -61px;
+        right: -13px;
+        -webkit-border-radius: 100%;
+        -khtml-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        border-radius: 100%;
+        -webkit-transform: rotate(33deg);
+        -khtml-transform: rotate(33deg);
+        -moz-transform: rotate(33deg);
+        -ms-transform: rotate(33deg);
+        -o-transform: rotate(33deg);
+        transform: rotate(33deg);
+        overflow: hidden;
+    }
+
+span:nth-child(2) {
+    animation: fade-in .8s .2s forwards cubic-bezier(.11,0,.5,0);
+}
+
+.ct-process-icon span:before {
+    display: block;
+    content: '';
+    height: 277px;
+    width: 85px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #015098;
+    -webkit-transition: all .3s linear 0ms;
+    -khtml-transition: all .3s linear 0ms;
+    -moz-transition: all .3s linear 0ms;
+    -ms-transition: all .3s linear 0ms;
+    -o-transition: all .3s linear 0ms;
+    transition: all .3s linear 0ms;
+}
+
+.company-profile h2 {
+    position: relative;
+    font-size: 35px;
+    font-weight: 500;
+    color: #111;
+    line-height: 130%;
+    margin-bottom: 1px;
+}
+
+.center-holder {
+    text-align: center !important;
+}
+
+.section-heading-line {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: #127ad9;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    font-size: 12px;
+    font-weight: 400;
+    color: #090606;
+    line-height: 160%;
+    padding-top: 15px;
+}
+
+.btn-download {
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 40px;
+    border-radius: 4px;
+    background-color: #fdb491;
+    -webkit-transition: background-color .3s,-webkit-transform .3s;
+    transition: background-color .3s,transform .3s;
+}

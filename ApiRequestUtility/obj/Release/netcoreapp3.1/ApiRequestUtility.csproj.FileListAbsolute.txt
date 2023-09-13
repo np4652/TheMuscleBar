@@ -1,0 +1,10 @@
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\bin\Release\netcoreapp3.1\ApiRequestUtility.deps.json
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\bin\Release\netcoreapp3.1\ApiRequestUtility.dll
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\bin\Release\netcoreapp3.1\ApiRequestUtility.pdb
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\obj\Release\netcoreapp3.1\ApiRequestUtility.csproj.AssemblyReference.cache
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\obj\Release\netcoreapp3.1\ApiRequestUtility.GeneratedMSBuildEditorConfig.editorconfig
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\obj\Release\netcoreapp3.1\ApiRequestUtility.AssemblyInfoInputs.cache
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\obj\Release\netcoreapp3.1\ApiRequestUtility.AssemblyInfo.cs
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\obj\Release\netcoreapp3.1\ApiRequestUtility.csproj.CoreCompileInputs.cache
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\obj\Release\netcoreapp3.1\ApiRequestUtility.dll
+D:\Rishu\Rishabh Software\gym\Musclebar\MuscleBarGit\TheMuscleBar\ApiRequestUtility\obj\Release\netcoreapp3.1\ApiRequestUtility.pdb
